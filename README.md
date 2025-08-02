@@ -403,6 +403,174 @@ Comprehensive inventory management analysis to optimize turnover and identify ri
 }
 ```
 
+## 🔍 Real-World Example Searches
+
+### **Finding High-Velocity Products for Quick Turnover**
+
+**Example 1: Fast-Moving Kitchen Products Under $50**
+```typescript
+// Find kitchen products that sell 20+ units/day and turn inventory quickly
+{
+  "categoryId": 2975312011,
+  "minVelocity": 20,
+  "maxPrice": 5000,
+  "sortBy": "velocity",
+  "sortOrder": "desc",
+  "minRating": 4.0
+}
+```
+
+**Example 2: Electronics with High Revenue Velocity**
+```typescript
+// Find electronics that generate $100+ daily revenue with good margins
+{
+  "categoryId": 493964,
+  "minVelocity": 10,
+  "minPrice": 2000,
+  "maxPrice": 15000,
+  "sortBy": "revenueVelocity",
+  "sortOrder": "desc"
+}
+```
+
+### **Market Research & Opportunity Discovery**
+
+**Example 3: Home & Garden Market Analysis**
+```typescript
+// Analyze Home & Garden category for opportunities
+{
+  "categoryId": 16310091,
+  "analysisType": "opportunities",
+  "minRating": 4.0,
+  "priceRange": "mid"
+}
+```
+
+**Example 4: Find Low-Competition High-Sales Products**
+```typescript
+// Products with high sales but few competitors (goldmine finder)
+{
+  "categoryId": 16310091,
+  "minMonthlySales": 1500,
+  "maxSellerCount": 5,
+  "minRating": 4.2,
+  "sortBy": "monthlySold",
+  "sortOrder": "desc"
+}
+```
+
+### **Inventory Management Scenarios**
+
+**Example 5: Identify Slow Movers in Your Portfolio**
+```typescript
+// Check your current inventory for slow-moving products
+{
+  "asins": ["B08N5WRWNW", "B08C1W5N87", "B07YTK3YQD", "B08G9J44ZN"],
+  "analysisType": "slow_movers",
+  "timeframe": "quarter"
+}
+```
+
+**Example 6: Stockout Risk Alert System**
+```typescript
+// Monitor high-risk products that need immediate reordering
+{
+  "categoryId": 11091801,
+  "analysisType": "stockout_risks",
+  "targetTurnoverRate": 15
+}
+```
+
+### **Seasonal & Trend Analysis**
+
+**Example 7: Q4 Holiday Preparation**
+```typescript
+// Analyze seasonal patterns for holiday inventory planning
+{
+  "categoryId": 165796011,
+  "analysisType": "seasonal",
+  "timeframe": "quarter"
+}
+```
+
+**Example 8: Trending Products Discovery**
+```typescript
+// Find products with accelerating sales trends
+{
+  "minVelocity": 15,
+  "sortBy": "trend",
+  "sortOrder": "desc",
+  "minRating": 4.0,
+  "categoryId": 3375251
+}
+```
+
+### **Competitive Intelligence**
+
+**Example 9: Seller Performance Analysis**
+```typescript
+// Research a competitor's performance and product range
+{
+  "seller": "A2L77EE7U53NWQ",
+  "domain": 1,
+  "storefront": 50
+}
+```
+
+**Example 10: Deal Hunting for Resellers**
+```typescript
+// Find current deals with high profit margins
+{
+  "domain": 1,
+  "minDiscount": 25,
+  "minRating": 4.0,
+  "isPrime": true,
+  "sortType": 0,
+  "perPage": 20
+}
+```
+
+### **Advanced Multi-Step Research Workflow**
+
+**Complete Product Research Process:**
+```typescript
+// Step 1: Category overview
+{
+  "categoryId": 16310091,
+  "analysisType": "overview"
+}
+
+// Step 2: Find opportunities in that category
+{
+  "categoryId": 16310091,
+  "analysisType": "opportunities",
+  "minRating": 4.0
+}
+
+// Step 3: Use product finder with discovered parameters
+{
+  "categoryId": 16310091,
+  "minMonthlySales": 2000,
+  "maxSellerCount": 5,
+  "minRating": 4.4,
+  "sortBy": "monthlySold"
+}
+
+// Step 4: Analyze sales velocity of top candidates
+{
+  "asins": ["B08N5WRWNW", "B08C1W5N87", "B07YTK3YQD"],
+  "sortBy": "velocity",
+  "timeframe": "month"
+}
+
+// Step 5: Check price history for market stability
+{
+  "asin": "B08N5WRWNW",
+  "dataType": 0,
+  "days": 90
+}
+```
+
 ## Development
 
 ### Scripts
