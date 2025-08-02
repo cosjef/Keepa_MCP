@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "keepa": {
+      "command": "node",
+      "args": ["/Users/cosjef/Development/keepa_mcp/dist/index.js"],
+      "env": {
+        "KEEPA_API_KEY": "your_keepa_api_key_here"
+      }
+    }
+  }
+}
