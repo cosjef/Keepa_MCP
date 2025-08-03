@@ -87,6 +87,13 @@ A comprehensive Model Context Protocol (MCP) server that provides Claude with ad
 
 ### Claude Desktop Configuration
 
+**Location**: `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or `%APPDATA%/Claude/claude_desktop_config.json` (Windows)
+
+**Note**: If the file doesn't exist, create it. Some installations may have `config.json` instead - copy it to the correct filename:
+```bash
+cp ~/Library/Application\ Support/Claude/config.json ~/Library/Application\ Support/Claude/claude_desktop_config.json
+```
+
 Add to your Claude Desktop `claude_desktop_config.json`:
 
 ```json
@@ -102,6 +109,54 @@ Add to your Claude Desktop `claude_desktop_config.json`:
   }
 }
 ```
+
+## 🔧 Troubleshooting
+
+### **If MCP tools don't appear in Claude Desktop:**
+
+1. **Check Claude Desktop version**: Ensure you're running version 0.7.0 or later (MCP support required)
+   - Click "Claude" menu → "About Claude"
+
+2. **Verify config file location and format**:
+   ```bash
+   # Check if file exists
+   ls -la ~/Library/Application\ Support/Claude/claude_desktop_config.json
+   
+   # Validate JSON format
+   cat ~/Library/Application\ Support/Claude/claude_desktop_config.json
+   ```
+
+3. **Test MCP server manually**:
+   ```bash
+   cd /path/to/keepa_mcp
+   npm run build
+   KEEPA_API_KEY=your_key_here node dist/index.js
+   ```
+
+4. **Complete restart**: Force quit Claude Desktop (Cmd+Q) and relaunch
+
+5. **Simplified config**: Try removing other settings and use minimal config:
+   ```json
+   {
+     "mcpServers": {
+       "keepa": {
+         "command": "node",
+         "args": ["/full/path/to/keepa_mcp/dist/index.js"],
+         "env": {
+           "KEEPA_API_KEY": "your_keepa_api_key_here"
+         }
+       }
+     }
+   }
+   ```
+
+6. **Check for logs**: Look for error messages in Claude Desktop console or system logs
+
+### **Common Issues:**
+- **Wrong file path**: Ensure the path to `dist/index.js` is absolute and correct
+- **Missing build**: Run `npm run build` after any code changes
+- **Invalid JSON**: Use a JSON validator to check config file syntax
+- **Environment variables**: Make sure `KEEPA_API_KEY` is set correctly
 
 ## Available Tools
 
