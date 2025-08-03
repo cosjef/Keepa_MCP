@@ -228,10 +228,18 @@ Comprehensive category analysis showing market opportunities, competition levels
 
 ## Available Tools
 
+**🎯 How to Use These Tools:**
+Simply ask Claude Desktop natural language questions - you don't need to worry about JSON or parameters! Claude will automatically use the appropriate Keepa tools and handle all the technical details for you.
+
 ### 1. Product Lookup (`keepa_product_lookup`)
 Get detailed information for a single Amazon product.
 
-**Parameters:**
+**💬 How to Ask Claude:**
+- *"Use Keepa to look up product B08N5WRWNW"*
+- *"Get detailed info for ASIN B08C1W5N87 including price history"*
+- *"Look up this Amazon product B07YTK3YQD with ratings and variations"*
+
+**🔧 Technical Parameters (handled automatically by Claude):**
 - `asin` (string): Amazon ASIN (product identifier)
 - `domain` (number, optional): Amazon domain (1=US, 2=UK, 3=DE, etc.) - default: 1
 - `days` (number, optional): Days of price history to include (1-365)
@@ -243,7 +251,12 @@ Get detailed information for a single Amazon product.
 ### 2. Batch Product Lookup (`keepa_batch_product_lookup`)
 Look up multiple products efficiently.
 
-**Parameters:**
+**💬 How to Ask Claude:**
+- *"Use Keepa to analyze these ASINs: B08N5WRWNW, B08C1W5N87, B07YTK3YQD"*
+- *"Get info for multiple products: B08G9J44ZN, B09X7L2M3K, B07QXZSR1D"*
+- *"Compare these 5 Amazon products using Keepa: [list of ASINs]"*
+
+**🔧 Technical Parameters (handled automatically by Claude):**
 - `asins` (array): Array of Amazon ASINs (max 100)
 - `domain` (number, optional): Amazon domain - default: 1
 - `days` (number, optional): Days of price history to include
@@ -252,7 +265,13 @@ Look up multiple products efficiently.
 ### 3. Deal Search (`keepa_search_deals`)
 Find current Amazon deals with filtering options.
 
-**Parameters:**
+**💬 How to Ask Claude:**
+- *"Find current Amazon deals with at least 25% discount using Keepa"*
+- *"Search for Prime deals under $50 in Electronics using Keepa"*
+- *"Show me the best deals with 4+ star ratings using Keepa"*
+- *"Find kitchen deals with 30%+ discounts using Keepa"*
+
+**🔧 Technical Parameters (handled automatically by Claude):**
 - `domain` (number, optional): Amazon domain - default: 1
 - `categoryId` (number, optional): Amazon category ID to filter by
 - `minPrice` (number, optional): Minimum price in cents
@@ -267,7 +286,12 @@ Find current Amazon deals with filtering options.
 ### 4. Seller Lookup (`keepa_seller_lookup`)
 Get detailed information about an Amazon seller.
 
-**Parameters:**
+**💬 How to Ask Claude:**
+- *"Use Keepa to analyze seller A2L77EE7U53NWQ performance"*
+- *"Get detailed info about this Amazon seller including their storefront"*
+- *"Research competitor seller ratings and product range using Keepa"*
+
+**🔧 Technical Parameters (handled automatically by Claude):**
 - `seller` (string): Seller ID or name
 - `domain` (number, optional): Amazon domain - default: 1
 - `storefront` (number, optional): Number of storefront ASINs to retrieve (0-100000)
@@ -275,7 +299,12 @@ Get detailed information about an Amazon seller.
 ### 5. Best Sellers (`keepa_best_sellers`)
 Get best sellers list for a specific Amazon category.
 
-**Parameters:**
+**💬 How to Ask Claude:**
+- *"Show me the best sellers in Electronics category using Keepa"*
+- *"Get top 20 best selling products in Home & Kitchen using Keepa"*
+- *"Find what's trending in the Books category using Keepa best sellers"*
+
+**🔧 Technical Parameters (handled automatically by Claude):**
 - `domain` (number, optional): Amazon domain - default: 1
 - `category` (number): Amazon category ID
 - `page` (number, optional): Page number for pagination - default: 0
@@ -283,7 +312,12 @@ Get best sellers list for a specific Amazon category.
 ### 6. Price History (`keepa_price_history`)
 Get historical price data for an Amazon product.
 
-**Parameters:**
+**💬 How to Ask Claude:**
+- *"Get 90 days of price history for ASIN B08N5WRWNW using Keepa"*
+- *"Show me the Amazon price trends for this product over the last 6 months"*
+- *"Check if this ASIN has stable pricing or frequent fluctuations using Keepa"*
+
+**🔧 Technical Parameters (handled automatically by Claude):**
 - `asin` (string): Amazon ASIN (product identifier)
 - `domain` (number, optional): Amazon domain - default: 1
 - `dataType` (number): Data type (0=Amazon, 1=New, 2=Used, 3=Sales Rank, etc.)
@@ -291,6 +325,12 @@ Get historical price data for an Amazon product.
 
 ### 7. Product Finder (`keepa_product_finder`)
 Advanced product finder with filtering similar to Keepa's Product Finder - find high-opportunity products by rating, price, sales volume, and competition level.
+
+**💬 How to Ask Claude:**
+- *"Find high-opportunity products in Home & Kitchen with low competition using Keepa"*
+- *"Use Keepa to find products with 4+ stars, good sales, and under 5 sellers"*
+- *"Search for profitable products under $30 with monthly sales over 1000 using Keepa"*
+- *"Find Prime-eligible products with high ratings and low competition in Electronics"*
 
 **Parameters:**
 - `domain` (number, optional): Amazon domain - default: 1
@@ -316,7 +356,13 @@ Advanced product finder with filtering similar to Keepa's Product Finder - find 
 ### 8. Category Analysis (`keepa_category_analysis`)
 Comprehensive category analysis to find the best products, market opportunities, and competitive insights.
 
-**Parameters:**
+**💬 How to Ask Claude:**
+- *"Analyze the Home & Kitchen category for market opportunities using Keepa"*
+- *"Find top performing products in Electronics category using Keepa"*
+- *"Use Keepa to identify market gaps and opportunities in Beauty category"*
+- *"Get quarterly trends analysis for Automotive category using Keepa"*
+
+**🔧 Technical Parameters (handled automatically by Claude):**
 - `domain` (number, optional): Amazon domain - default: 1
 - `categoryId` (number): Amazon category ID to analyze
 - `analysisType` (string, optional): Type of analysis ('overview', 'top_performers', 'opportunities', 'trends') - default: 'overview'
@@ -327,6 +373,12 @@ Comprehensive category analysis to find the best products, market opportunities,
 
 ### 9. Sales Velocity Analysis (`keepa_sales_velocity`)
 Find fast-moving products that turn quickly and avoid slow-moving inventory that ties up cash flow.
+
+**💬 How to Ask Claude:**
+- *"Use Keepa to find products that sell 20+ units per day in the kitchen category"*
+- *"Find fast-moving products with high inventory turnover using Keepa"*
+- *"Check sales velocity for these ASINs: B08N5WRWNW, B08C1W5N87"*
+- *"Show me products that turn inventory quickly to avoid cash flow issues"*
 
 **Parameters:**
 - `domain` (number, optional): Amazon domain - default: 1
@@ -344,6 +396,12 @@ Find fast-moving products that turn quickly and avoid slow-moving inventory that
 
 ### 10. Inventory Analysis (`keepa_inventory_analysis`) 
 Comprehensive inventory management analysis to optimize turnover and identify risks.
+
+**💬 How to Ask Claude:**
+- *"Analyze inventory turnover and identify slow-moving products in electronics category using Keepa"*
+- *"Use Keepa to find products at risk of stockouts in my inventory"*
+- *"Check for seasonal patterns in Home & Kitchen products using Keepa"*
+- *"Identify fast movers vs slow movers in my product portfolio using Keepa"*
 
 **Parameters:**
 - `domain` (number, optional): Amazon domain - default: 1
@@ -380,6 +438,10 @@ Comprehensive inventory management analysis to optimize turnover and identify ri
 [See full list in types.ts](src/types.ts)
 
 ## Usage Examples
+
+**⚠️ Important Note:** The JSON examples below are for **developers and technical reference only**. 
+
+**As a regular user**, you don't need to understand or use JSON - simply ask Claude Desktop natural questions like those shown in the "How to Ask Claude" sections above!
 
 ### Basic Product Lookup
 ```typescript
