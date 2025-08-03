@@ -775,7 +775,7 @@ When requesting price history, Keepa tracks multiple price points for each produ
 
 **💬 How to use:** Claude automatically selects the right data types, but you can be specific: *"Show me Amazon's official pricing vs marketplace pricing for this ASIN"* or *"Get sales rank trends for this product using Keepa"*
 
-**🔧 For Developers:** [Complete data type list in types.ts](src/types.ts)
+**🔧 For Developers:** The complete data type list is available in [types.ts](src/types.ts), which is a TypeScript file in the source code that defines all the technical data structures and constants used by the MCP server. This includes dozens of additional price data types, category mappings, and API response formats that developers may need when building integrations or understanding the full capabilities of the Keepa API.
 
 ## Development
 
