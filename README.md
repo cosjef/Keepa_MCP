@@ -84,7 +84,9 @@ The MCP server accepts these environment variables (configured in Claude Desktop
 
 ### Claude Desktop Configuration
 
-**Location**: `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or `%APPDATA%/Claude/claude_desktop_config.json` (Windows)
+**Location**: 
+- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows**: `%APPDATA%/Claude/claude_desktop_config.json`
 
 **Note**: If the file doesn't exist, create it. Some installations may have `config.json` instead - copy it to the correct filename:
 ```bash
