@@ -214,8 +214,6 @@ Once your MCP server is connected, try these example questions in Claude Desktop
 
 These examples demonstrate the key capabilities and help verify your MCP server is working correctly.
 
-## 📸 Screenshots
-
 ### **Sales Velocity Analysis in Action**
 Example of finding fast-moving products with detailed velocity metrics and inventory turnover insights:
 
