@@ -169,6 +169,15 @@ When you first start Claude Desktop with the MCP server configured, you'll see a
 - **Invalid JSON**: Use a JSON validator to check config file syntax
 - **Missing API key**: Make sure `KEEPA_API_KEY` is set in the env section of your config
 
+### **✅ Verify MCP Server Connection**
+Once you've configured everything and restarted Claude Desktop, you should see your Keepa tools available:
+
+![Keepa Tools Available](screenshots/keepa-tools-available.jpg)
+
+*The Keepa MCP server provides 10 powerful tools for Amazon marketplace intelligence, sales velocity analysis, and inventory management.*
+
+If you see these tools in Claude Desktop, your MCP server is successfully connected and ready to use!
+
 ## 🚀 Quick Start Examples
 
 Once your MCP server is connected, try these example questions in Claude Desktop to test the functionality:
@@ -206,13 +215,6 @@ Once your MCP server is connected, try these example questions in Claude Desktop
 These examples demonstrate the key capabilities and help verify your MCP server is working correctly.
 
 ## 📸 Screenshots
-
-### **MCP Server Successfully Connected**
-Once connected and permissions are granted, Claude Desktop will show your Keepa tools in the available tools list:
-
-![Keepa Tools Available](screenshots/keepa-tools-available.jpg)
-
-*The Keepa MCP server provides 10 powerful tools for Amazon marketplace intelligence, sales velocity analysis, and inventory management.*
 
 ### **Sales Velocity Analysis in Action**
 Example of finding fast-moving products with detailed velocity metrics and inventory turnover insights:
