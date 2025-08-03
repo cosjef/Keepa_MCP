@@ -422,6 +422,8 @@ Comprehensive inventory management analysis to optimize turnover and identify ri
 
 **As a regular user**, you don't need to understand or use JSON - simply ask Claude Desktop natural questions like those shown in the "How to Ask Claude" sections above!
 
+**Why are JSON examples included?** These technical examples help developers understand the MCP server's capabilities, integrate it into other applications, or build custom tools. They show the exact parameters and data structures the server uses internally when Claude processes your natural language requests.
+
 ### Basic Product Lookup
 ```typescript
 // Look up a product with basic info
