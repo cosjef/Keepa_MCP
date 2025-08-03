@@ -111,6 +111,8 @@ Add to your Claude Desktop `claude_desktop_config.json`:
 
 **Replace `/path/to/keepa_mcp` with your actual path and `your_keepa_api_key_here` with your Keepa API key.**
 
+**⚠️ Important**: After making any changes to your `claude_desktop_config.json` file, you must completely close Claude Desktop (Cmd+Q on macOS or Alt+F4 on Windows) and restart it for the changes to take effect.
+
 ### **Grant MCP Server Permissions**
 
 When you first start Claude Desktop with the MCP server configured, you'll see a permission dialog. Click **"Allow"** to grant the server access:
@@ -118,8 +120,6 @@ When you first start Claude Desktop with the MCP server configured, you'll see a
 ![Claude Desktop Permissions](screenshots/claude_permissions.jpg)
 
 *You must grant these permissions for the Keepa tools to appear and function properly.*
-
-**⚠️ Important**: After making any changes to your `claude_desktop_config.json` file, you must completely close Claude Desktop (Cmd+Q on macOS or Alt+F4 on Windows) and restart it for the changes to take effect.
 
 ## 🔧 Troubleshooting
 
