@@ -71,18 +71,13 @@ A comprehensive Model Context Protocol (MCP) server that provides Claude with ad
    npm run build
    ```
 
-4. Set up your environment variables:
-   ```bash
-   cp .env.example .env
-   # Edit .env and add your Keepa API key
-   ```
-   
-   **Important**: The MCP server will read your API key from the `.env` file automatically, so you don't need to specify it in the Claude Desktop config.
+4. You'll configure your Keepa API key in the Claude Desktop config (next section)
 
 ## Configuration
 
 ### Environment Variables
 
+The MCP server accepts these environment variables (configured in Claude Desktop):
 - `KEEPA_API_KEY` (required): Your Keepa API key
 - `KEEPA_RATE_LIMIT_DELAY` (optional): Delay between requests in milliseconds (default: 1000)
 - `KEEPA_TIMEOUT` (optional): Request timeout in milliseconds (default: 30000)
@@ -103,13 +98,16 @@ Add to your Claude Desktop `claude_desktop_config.json`:
   "mcpServers": {
     "keepa": {
       "command": "node",
-      "args": ["/Users/cosjef/Development/keepa_mcp/dist/index.js"]
+      "args": ["/path/to/keepa_mcp/dist/index.js"],
+      "env": {
+        "KEEPA_API_KEY": "your_keepa_api_key_here"
+      }
     }
   }
 }
 ```
 
-**Note**: The API key is read from your `.env` file automatically - no need to include it in this config.
+**Replace `/path/to/keepa_mcp` with your actual path and `your_keepa_api_key_here` with your Keepa API key.**
 
 ## 🔧 Troubleshooting
 
@@ -142,7 +140,10 @@ Add to your Claude Desktop `claude_desktop_config.json`:
      "mcpServers": {
        "keepa": {
          "command": "node",
-         "args": ["/full/path/to/keepa_mcp/dist/index.js"]
+         "args": ["/full/path/to/keepa_mcp/dist/index.js"],
+         "env": {
+           "KEEPA_API_KEY": "your_keepa_api_key_here"
+         }
        }
      }
    }
@@ -154,7 +155,7 @@ Add to your Claude Desktop `claude_desktop_config.json`:
 - **Wrong file path**: Ensure the path to `dist/index.js` is absolute and correct
 - **Missing build**: Run `npm run build` after any code changes
 - **Invalid JSON**: Use a JSON validator to check config file syntax
-- **Missing API key**: Make sure `KEEPA_API_KEY` is set in your `.env` file
+- **Missing API key**: Make sure `KEEPA_API_KEY` is set in the env section of your config
 
 ## 🚀 Quick Start Examples
 
