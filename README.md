@@ -415,31 +415,6 @@ Comprehensive inventory management analysis to optimize turnover and identify ri
 - `timeframe` (string, optional): Analysis timeframe ('week', 'month', 'quarter') - default: 'month'
 - `targetTurnoverRate` (number, optional): Target inventory turns per year - default: 12
 
-## Amazon Domain IDs
-
-- 1: United States (amazon.com)
-- 2: United Kingdom (amazon.co.uk)
-- 3: Germany (amazon.de)
-- 4: France (amazon.fr)
-- 5: Japan (amazon.co.jp)
-- 6: Canada (amazon.ca)
-- 7: China (amazon.cn)
-- 8: Italy (amazon.it)
-- 9: Spain (amazon.es)
-- 10: India (amazon.in)
-- 11: Mexico (amazon.com.mx)
-
-## Data Types for Price History
-
-- 0: Amazon Price
-- 1: New Price (3rd party)
-- 2: Used Price
-- 3: Sales Rank
-- 16: Rating
-- 17: Review Count
-- 18: Buy Box Price
-
-[See full list in types.ts](src/types.ts)
 
 ## Usage Examples
 
@@ -759,6 +734,46 @@ Comprehensive inventory management analysis to optimize turnover and identify ri
   "days": 90
 }
 ```
+
+## 🌍 Amazon Marketplace Reference
+
+### **Why Different Amazon Domains Matter**
+When using Keepa tools, you can specify which Amazon marketplace to search. Different countries have different product catalogs, pricing, competition levels, and sales data. This is crucial for:
+- **Global sellers** targeting specific markets
+- **Price comparison** across regions  
+- **Market research** in different countries
+- **Competition analysis** by region
+
+**Available Amazon Domains:**
+- 1: United States (amazon.com) - *Default and most comprehensive*
+- 2: United Kingdom (amazon.co.uk)
+- 3: Germany (amazon.de)
+- 4: France (amazon.fr)
+- 5: Japan (amazon.co.jp)
+- 6: Canada (amazon.ca)
+- 7: China (amazon.cn)
+- 8: Italy (amazon.it)
+- 9: Spain (amazon.es)
+- 10: India (amazon.in)
+- 11: Mexico (amazon.com.mx)
+
+**💬 How to specify:** Just mention the country in your request: *"Find deals in UK Amazon using Keepa"* or *"Check German marketplace for this product using Keepa"*
+
+### **Understanding Price History Data Types**
+When requesting price history, Keepa tracks multiple price points for each product. This helps you understand the complete pricing picture:
+
+**Common Data Types:**
+- **0: Amazon Price** - Official Amazon selling price
+- **1: New Price (3rd party)** - Lowest new item price from marketplace sellers
+- **2: Used Price** - Lowest used item price
+- **3: Sales Rank** - Product's ranking in its category (lower = better selling)
+- **16: Rating** - Average customer rating over time
+- **17: Review Count** - Number of reviews over time  
+- **18: Buy Box Price** - Current "Buy Now" price (most important for sales)
+
+**💬 How to use:** Claude automatically selects the right data types, but you can be specific: *"Show me Amazon's official pricing vs marketplace pricing for this ASIN"* or *"Get sales rank trends for this product using Keepa"*
+
+**🔧 For Developers:** [Complete data type list in types.ts](src/types.ts)
 
 ## Development
 
