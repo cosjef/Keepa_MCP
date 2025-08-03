@@ -158,6 +158,42 @@ Add to your Claude Desktop `claude_desktop_config.json`:
 - **Invalid JSON**: Use a JSON validator to check config file syntax
 - **Environment variables**: Make sure `KEEPA_API_KEY` is set correctly
 
+## 🚀 Quick Start Examples
+
+Once your MCP server is connected, try these example questions in Claude Desktop to test the functionality:
+
+### **Test Sales Velocity Analysis:**
+```
+"Use Keepa to find products that sell 20+ units per day in the kitchen category"
+```
+
+### **Test Market Analysis:**
+```
+"Analyze the Home & Kitchen category for market opportunities using Keepa"
+```
+
+### **Test Specific Product Velocity:**
+```
+"Use Keepa to check sales velocity for these ASINs: B08N5WRWNW, B08C1W5N87"
+```
+
+### **Test Deal Discovery:**
+```
+"Find current Amazon deals with at least 25% discount using Keepa"
+```
+
+### **Test Product Research:**
+```
+"Use Keepa to look up detailed information for ASIN B08N5WRWNW including price history"
+```
+
+### **Test Inventory Management:**
+```
+"Analyze inventory turnover and identify slow-moving products in electronics category using Keepa"
+```
+
+These examples demonstrate the key capabilities and help verify your MCP server is working correctly.
+
 ## Available Tools
 
 ### 1. Product Lookup (`keepa_product_lookup`)
