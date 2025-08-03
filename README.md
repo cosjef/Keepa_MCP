@@ -228,7 +228,7 @@ Comprehensive category analysis showing market opportunities, competition levels
 
 *Deep market insights help identify profitable niches and avoid oversaturated categories with too much competition.*
 
-*Screenshots show real output from the Keepa MCP server demonstrating the comprehensive Amazon marketplace intelligence capabilities.*
+*The screenshots above show real output from the Keepa MCP server demonstrating the comprehensive Amazon marketplace intelligence capabilities.*
 
 ## Available Tools
 
