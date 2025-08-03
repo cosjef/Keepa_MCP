@@ -119,6 +119,8 @@ When you first start Claude Desktop with the MCP server configured, you'll see a
 
 *You must grant these permissions for the Keepa tools to appear and function properly.*
 
+**⚠️ Important**: After making any changes to your `claude_desktop_config.json` file, you must completely close Claude Desktop (Cmd+Q on macOS or Alt+F4 on Windows) and restart it for the changes to take effect.
+
 ## 🔧 Troubleshooting
 
 ### **If MCP tools don't appear in Claude Desktop:**
