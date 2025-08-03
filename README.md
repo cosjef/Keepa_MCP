@@ -76,6 +76,8 @@ A comprehensive Model Context Protocol (MCP) server that provides Claude with ad
    cp .env.example .env
    # Edit .env and add your Keepa API key
    ```
+   
+   **Important**: The MCP server will read your API key from the `.env` file automatically, so you don't need to specify it in the Claude Desktop config.
 
 ## Configuration
 
@@ -101,14 +103,13 @@ Add to your Claude Desktop `claude_desktop_config.json`:
   "mcpServers": {
     "keepa": {
       "command": "node",
-      "args": ["/path/to/keepa_mcp/dist/index.js"],
-      "env": {
-        "KEEPA_API_KEY": "your_keepa_api_key_here"
-      }
+      "args": ["/Users/cosjef/Development/keepa_mcp/dist/index.js"]
     }
   }
 }
 ```
+
+**Note**: The API key is read from your `.env` file automatically - no need to include it in this config.
 
 ## 🔧 Troubleshooting
 
@@ -141,10 +142,7 @@ Add to your Claude Desktop `claude_desktop_config.json`:
      "mcpServers": {
        "keepa": {
          "command": "node",
-         "args": ["/full/path/to/keepa_mcp/dist/index.js"],
-         "env": {
-           "KEEPA_API_KEY": "your_keepa_api_key_here"
-         }
+         "args": ["/full/path/to/keepa_mcp/dist/index.js"]
        }
      }
    }
@@ -156,7 +154,7 @@ Add to your Claude Desktop `claude_desktop_config.json`:
 - **Wrong file path**: Ensure the path to `dist/index.js` is absolute and correct
 - **Missing build**: Run `npm run build` after any code changes
 - **Invalid JSON**: Use a JSON validator to check config file syntax
-- **Environment variables**: Make sure `KEEPA_API_KEY` is set correctly
+- **Missing API key**: Make sure `KEEPA_API_KEY` is set in your `.env` file
 
 ## 🚀 Quick Start Examples
 
@@ -193,6 +191,30 @@ Once your MCP server is connected, try these example questions in Claude Desktop
 ```
 
 These examples demonstrate the key capabilities and help verify your MCP server is working correctly.
+
+## 📸 Screenshots
+
+### **MCP Server Successfully Connected**
+Once connected, Claude Desktop will show your Keepa tools in the available tools list:
+
+![Keepa Tools Available](screenshots/keepa-tools-available.png)
+
+### **Sales Velocity Analysis in Action**
+Example of finding fast-moving products with detailed velocity metrics:
+
+![Sales Velocity Analysis](screenshots/sales-velocity-example.png)
+
+### **Market Analysis Results**
+Category analysis showing opportunities and market insights:
+
+![Market Analysis](screenshots/market-analysis-example.png)
+
+### **Product Research Output**
+Detailed product information with pricing and competition data:
+
+![Product Research](screenshots/product-research-example.png)
+
+*Screenshots show real output from the Keepa MCP server demonstrating the comprehensive Amazon marketplace intelligence capabilities.*
 
 ## Available Tools
 
