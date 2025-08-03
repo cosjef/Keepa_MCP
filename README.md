@@ -109,6 +109,14 @@ Add to your Claude Desktop `claude_desktop_config.json`:
 
 **Replace `/path/to/keepa_mcp` with your actual path and `your_keepa_api_key_here` with your Keepa API key.**
 
+### **Grant MCP Server Permissions**
+
+When you first start Claude Desktop with the MCP server configured, you'll see a permission dialog. Click **"Allow"** to grant the server access:
+
+![Claude Desktop Permissions](screenshots/claude_permissions.jpg)
+
+*You must grant these permissions for the Keepa tools to appear and function properly.*
+
 ## 🔧 Troubleshooting
 
 ### **If MCP tools don't appear in Claude Desktop:**
@@ -196,24 +204,25 @@ These examples demonstrate the key capabilities and help verify your MCP server 
 ## 📸 Screenshots
 
 ### **MCP Server Successfully Connected**
-Once connected, Claude Desktop will show your Keepa tools in the available tools list:
+Once connected and permissions are granted, Claude Desktop will show your Keepa tools in the available tools list:
 
-![Keepa Tools Available](screenshots/keepa-tools-available.png)
+![Keepa Tools Available](screenshots/keepa-tools-available.jpg)
+
+*The Keepa MCP server provides 10 powerful tools for Amazon marketplace intelligence, sales velocity analysis, and inventory management.*
 
 ### **Sales Velocity Analysis in Action**
-Example of finding fast-moving products with detailed velocity metrics:
+Example of finding fast-moving products with detailed velocity metrics and inventory turnover insights:
 
-![Sales Velocity Analysis](screenshots/sales-velocity-example.png)
+![Sales Velocity Analysis](screenshots/sales-velocity-example.jpg)
+
+*Real-time analysis showing products that sell quickly, helping you avoid slow-moving inventory that ties up cash flow.*
 
 ### **Market Analysis Results**
-Category analysis showing opportunities and market insights:
+Comprehensive category analysis showing market opportunities, competition levels, and trending products:
 
-![Market Analysis](screenshots/market-analysis-example.png)
+![Market Analysis](screenshots/market-analysis-example.jpg)
 
-### **Product Research Output**
-Detailed product information with pricing and competition data:
-
-![Product Research](screenshots/product-research-example.png)
+*Deep market insights help identify profitable niches and avoid oversaturated categories with too much competition.*
 
 *Screenshots show real output from the Keepa MCP server demonstrating the comprehensive Amazon marketplace intelligence capabilities.*
 
