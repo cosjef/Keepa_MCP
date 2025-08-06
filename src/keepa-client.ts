@@ -6,6 +6,7 @@ import {
   KeepaSeller,
   KeepaBestSeller,
   KeepaApiResponse,
+  KeepaQueryResponse,
   ProductQueryParams,
   DealQueryParams,
   SellerQueryParams,
@@ -106,7 +107,7 @@ export class KeepaClient {
     }
 
     const response = await this.makeRequest<{ products: KeepaProduct[] }>('/product', queryParams);
-    return response.data?.products || [];
+    return (response as any).products || [];
   }
 
   async getProductByAsin(asin: string, domain: KeepaDomain = KeepaDomain.US, options: Partial<ProductQueryParams> = {}): Promise<KeepaProduct | null> {
@@ -137,53 +138,103 @@ export class KeepaClient {
 
   async getDeals(params: DealQueryParams): Promise<KeepaDeal[]> {
     const response = await this.makeRequest<{ deals: KeepaDeal[] }>('/deal', params);
-    return response.data?.deals || [];
+    return (response as any).deals || [];
   }
 
   async getSeller(params: SellerQueryParams): Promise<KeepaSeller[]> {
     const response = await this.makeRequest<{ sellers: KeepaSeller[] }>('/seller', params);
-    return response.data?.sellers || [];
+    return (response as any).sellers || [];
   }
 
   async getBestSellers(params: BestSellerQueryParams): Promise<KeepaBestSeller[]> {
     const response = await this.makeRequest<{ bestSellersList: KeepaBestSeller[] }>('/bestsellers', params);
-    return response.data?.bestSellersList || [];
+    return (response as any).bestSellersList || [];
   }
 
   async searchProducts(params: any): Promise<any[]> {
-    // For now, use the best sellers endpoint as a proxy for category search
-    // This provides real data while we work on implementing proper product finder
-    
-    if (params.categoryId) {
-      try {
-        const bestSellers = await this.getBestSellers({
-          domain: params.domain || 1,
-          category: params.categoryId,
-          page: params.page || 0
-        });
-        
-        // Get detailed product info for best sellers
-        if (bestSellers.length > 0) {
-          const asinList = bestSellers.slice(0, params.perPage || 25).map(bs => bs.asin);
-          const detailedProducts = await this.getProductsBatch(asinList, params.domain || 1, {
+    // Use the proper /query endpoint with selection parameter for product finder
+    try {
+      const selection: any = {};
+      
+      // Map common parameters to Keepa selection format
+      if (params.categoryId) {
+        selection.categoryId = params.categoryId;
+      }
+      
+      if (params.minMonthlySales) {
+        selection.current_SALES = { gte: params.minMonthlySales };
+      }
+      
+      if (params.minPrice) {
+        selection.current_AMAZON = { gte: params.minPrice };
+      }
+      
+      if (params.maxPrice) {
+        selection.current_AMAZON = { ...selection.current_AMAZON, lte: params.maxPrice };
+      }
+      
+      if (params.minRating) {
+        selection.current_RATING = { gte: Math.floor(params.minRating * 10) }; // Keepa uses 10x scale
+      }
+      
+      // Get ASINs from query endpoint
+      const queryResponse = await this.makeRequest('/query', {
+        domain: params.domain || 1,
+        selection: JSON.stringify(selection),
+        page: params.page || 0,
+        perPage: Math.min(params.perPage || 25, 50) // Keepa limit is 50
+      }) as KeepaQueryResponse;
+      
+      if (queryResponse.asinList && queryResponse.asinList.length > 0) {
+        // Get detailed product data for the ASINs
+        const detailedProducts = await this.getProductsBatch(
+          queryResponse.asinList, 
+          params.domain || 1, 
+          {
             rating: true,
-            offers: 10
+            offers: 20
+          }
+        );
+        
+        return detailedProducts.map(product => ({
+          ...product,
+          searchScore: queryResponse.totalResults,
+          isFromQuery: true
+        }));
+      }
+      
+    } catch (error) {
+      console.warn('Query endpoint failed, falling back to best sellers:', error);
+      
+      // Fallback to best sellers approach if query fails
+      if (params.categoryId) {
+        try {
+          const bestSellers = await this.getBestSellers({
+            domain: params.domain || 1,
+            category: params.categoryId,
+            page: params.page || 0
           });
           
-          // Enhance with best seller data and simulate search criteria
-          return detailedProducts.map((product, index) => {
-            const bestSeller = bestSellers[index];
-            return {
-              ...product,
-              monthlySold: Math.max(100, Math.floor(2000 - (bestSeller.salesRank / 100))),
-              bestSellerRank: bestSeller.salesRank,
-              isFromBestSellers: true
-            };
-          });
+          if (bestSellers.length > 0) {
+            const asinList = bestSellers.slice(0, params.perPage || 25).map(bs => bs.asin);
+            const detailedProducts = await this.getProductsBatch(asinList, params.domain || 1, {
+              rating: true,
+              offers: 20
+            });
+            
+            return detailedProducts.map((product, index) => {
+              const bestSeller = bestSellers[index];
+              return {
+                ...product,
+                monthlySold: Math.max(100, Math.floor(2000 - (bestSeller.salesRank / 100))),
+                bestSellerRank: bestSeller.salesRank,
+                isFromBestSellers: true
+              };
+            });
+          }
+        } catch (fallbackError) {
+          console.warn('Best sellers fallback also failed:', fallbackError);
         }
-      } catch (error) {
-        // If category best sellers fails, fall back to empty results
-        console.warn('Best sellers fallback failed:', error);
       }
     }
     

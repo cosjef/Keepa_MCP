@@ -157,6 +157,14 @@ export interface KeepaApiResponse<T> {
   error?: string;
 }
 
+export interface KeepaQueryResponse extends KeepaApiResponse<null> {
+  asinList: string[];
+  totalResults: number;
+  refillIn?: number;
+  refillRate?: number;
+  tokenFlowReduction?: number;
+}
+
 export interface ProductQueryParams {
   asin?: string;
   asins?: string[];
