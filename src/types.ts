@@ -442,7 +442,7 @@ export const VERIFIED_AMAZON_CATEGORIES = {
   'Handmade Products': 1209104,
   'Health & Household': 8773677,
   'Home & Kitchen': 130316507,
-  'Industrial & Scientific': 16310091, // Corrected from 22791452
+  'Industrial & Scientific': 22791452, // Verified from official category list
   'Kindle Store': 5258707,
   'Luxury Stores': 33210,
   'Magazine Subscriptions': 4613,

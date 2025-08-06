@@ -337,7 +337,7 @@ If you see these tools in Claude Desktop, your MCP server is successfully connec
 ### **Major Categories (US Marketplace)**
 - **Electronics**: 23161322
 - **Home & Kitchen**: 130316507  
-- **Industrial & Scientific**: 16310091
+- **Industrial & Scientific**: 22791452
 - **Automotive**: 50495523
 - **Sports & Outdoors**: 27136078
 - **Tools & Home Improvement**: 32132196
