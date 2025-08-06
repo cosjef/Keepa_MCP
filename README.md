@@ -303,26 +303,6 @@ If you see these tools in Claude Desktop, your MCP server is successfully connec
 *These examples show the level of professional marketplace intelligence you'll receive from the Keepa MCP server.*
 
 
-## 💡 **Key Features**
-
-### **📊 Analytics & Data**
-- **Statistics Object Integration**: Sales velocity and inventory analytics included with product lookups
-- **Comprehensive Calculations**: Standard industry formulas for sales velocity and inventory turnover
-- **Large Dataset**: Access to 3+ billion Amazon products across multiple marketplaces
-
-### **⚡ Easy to Use**  
-- **Natural Language Interface**: Ask Claude questions in plain English instead of complex queries
-- **Advanced Filtering**: 20+ filters for product discovery (rating, price, sales volume, competition)
-- **Batch Processing**: Analyze up to 100 products at once
-
-### **📈 Inventory Insights**
-- **Sales Velocity Analysis**: Identify fast and slow-moving products
-- **Risk Management**: Automated stockout risk alerts and reorder quantity suggestions  
-- **Seasonal Patterns**: Quarterly demand analysis for better planning
-
----
-
-
 ## 📂 **Verified Amazon Category IDs**
 
 **⚠️ IMPORTANT**: Only use these verified category IDs for reliable results. Invalid category IDs return empty results.
@@ -382,6 +362,8 @@ If you see these tools in Claude Desktop, your MCP server is successfully connec
 ---
 
 ## 💰 **Token Usage & Cost Information**
+
+The Keepa API operates on a token-based system where each API query consumes tokens from your account. Different endpoints consume different amounts of tokens, and your usage is tracked across all requests.
 
 ### **📊 Token Usage Guidelines**
 - **Product Lookup**: ~1 token (includes Statistics Object data at no additional cost)
