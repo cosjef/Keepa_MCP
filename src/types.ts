@@ -106,8 +106,8 @@ export interface KeepaDeal {
   categoryTree: KeepaCategory[];
   salesRank: number;
   salesRankReference?: number;
-  deltaPercent: number;
-  delta: number;
+  deltaPercent: any; // Can be number or array - Deal object documentation shows arrays
+  delta: any; // Can be number or array  
   avgPrice: number;
   range: string;
   isLightningDeal: boolean;
@@ -117,6 +117,9 @@ export interface KeepaDeal {
   imageUrl?: string;
   domainId: number;
   dealScore: number;
+  lightningEnd?: number; // Lightning deal end time in Keepa minutes
+  warehouseCondition?: number; // Warehouse deal condition
+  warehouseConditionComment?: string;
 }
 
 export interface KeepaSeller {
@@ -188,6 +191,7 @@ export interface ProductQueryParams {
   promotions?: boolean;
   coupon_history?: boolean;
   lightning_deals?: boolean;
+  stats?: number; // Statistics data (1 = enable, provides FREE sales velocity and inventory analytics)
 }
 
 export interface DealQueryParams {
