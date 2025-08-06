@@ -833,7 +833,8 @@ export class KeepaClient {
         } else {
           // console.log(`✅ Using verified category: ${categoryName} (${params.categoryId})`);
         }
-        selection.categoryId = params.categoryId;
+        // FIXED: Use rootCategory array format as per API syntax
+        selection.rootCategory = [params.categoryId.toString()];
       }
       
       // Price filters (in cents)
@@ -844,36 +845,36 @@ export class KeepaClient {
         selection.current_AMAZON = { ...selection.current_AMAZON, lte: params.maxPrice };
       }
       
-      // NEW: Shipping cost filters
+      // FIXED: Shipping cost filters using BUY_BOX_SHIPPING
       if (params.minShipping) {
-        selection.current_SHIPPING = { gte: params.minShipping };
+        selection.current_BUY_BOX_SHIPPING_gte = params.minShipping;
       }
       if (params.maxShipping) {
-        selection.current_SHIPPING = { ...selection.current_SHIPPING, lte: params.maxShipping };
+        selection.current_BUY_BOX_SHIPPING_lte = params.maxShipping;
       }
       
-      // Rating filters (Keepa uses 10x scale: 4.5 stars = 45)
+      // FIXED: Rating filters (Keepa uses 10x scale: 4.5 stars = 45)
       if (params.minRating) {
-        selection.current_RATING = { gte: Math.floor(params.minRating * 10) };
+        selection.current_RATING_gte = Math.floor(params.minRating * 10);
       }
       if (params.maxRating) {
-        selection.current_RATING = { ...selection.current_RATING, lte: Math.floor(params.maxRating * 10) };
+        selection.current_RATING_lte = Math.floor(params.maxRating * 10);
       }
       
-      // NEW: Sales velocity filters (estimated monthly sales)
+      // FIXED: Sales velocity filters (estimated monthly sales)
       if (params.minMonthlySales) {
-        selection.current_SALES = { gte: params.minMonthlySales };
+        selection.monthlySold_gte = params.minMonthlySales;
       }
       if (params.maxMonthlySales) {
-        selection.current_SALES = { ...selection.current_SALES, lte: params.maxMonthlySales };
+        selection.monthlySold_lte = params.maxMonthlySales;
       }
       
-      // NEW: Competition filters (seller count)
+      // FIXED: Competition filters (90-day average seller count)
       if (params.minSellerCount) {
-        selection.current_COUNT_NEW = { gte: params.minSellerCount };
+        selection.avg90_COUNT_NEW_gte = params.minSellerCount;
       }
       if (params.maxSellerCount) {
-        selection.current_COUNT_NEW = { ...selection.current_COUNT_NEW, lte: params.maxSellerCount };
+        selection.avg90_COUNT_NEW_lte = params.maxSellerCount;
       }
       
       // NEW: Review count filter
@@ -897,6 +898,18 @@ export class KeepaClient {
       }
       if (params.minSalesRank) {
         selection.current_SALES_RANK = { ...selection.current_SALES_RANK, gte: params.minSalesRank };
+      }
+      
+      // FIXED: Add productType array (standard products = "0")
+      selection.productType = ["0"];
+      
+      // FIXED: Add sort parameter in correct format
+      if (params.sortBy) {
+        const sortOrder = params.sortOrder || 'desc';
+        selection.sort = [[params.sortBy, sortOrder]];
+      } else {
+        // Default sort by monthly sales descending
+        selection.sort = [["monthlySold", "desc"]];
       }
       
       // Get ASINs from query endpoint
