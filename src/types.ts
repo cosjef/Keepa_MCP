@@ -421,43 +421,43 @@ export const VERIFIED_AMAZON_CATEGORIES = {
   'Alexa Skills': 96814,
   'Amazon Autos': 32373,
   'Amazon Devices & Accessories': 402,
-  'Appliances': 1544480,
-  'Apps & Games': 797212,
-  'Arts, Crafts & Sewing': 13835970,
-  'Audible Books & Originals': 783083,
-  'Automotive': 50495523,
-  'Baby Products': 3032803,
-  'Beauty & Personal Care': 11064046,
-  'Books': 97748196,
-  'CDs & Vinyl': 7192227,
-  'Cell Phones & Accessories': 24244925,
-  'Clothing, Shoes & Jewelry': 242171273,
-  'Collectibles & Fine Art': 5218518,
-  'Credit & Payment Cards': 62,
-  'Digital Music': 54716226,
+  'Appliances': 2619525011, // VERIFIED: was 1544480
+  'Apps & Games': 2350149011, // VERIFIED: was 797212
+  'Arts, Crafts & Sewing': 2617941011, // VERIFIED: was 13835970
+  'Audible Books & Originals': 18145289011, // VERIFIED: was 783083
+  'Automotive': 15684181, // VERIFIED: was 50495523
+  'Baby Products': 165796011, // VERIFIED: was 3032803
+  'Beauty & Personal Care': 3760911, // VERIFIED: was 11064046
+  'Books': 283155, // VERIFIED: was 97748196
+  'CDs & Vinyl': 5174, // VERIFIED: was 7192227
+  'Cell Phones & Accessories': 2335752011, // VERIFIED: was 24244925
+  'Clothing, Shoes & Jewelry': 7141123011, // VERIFIED: was 242171273
+  'Collectibles & Fine Art': 4991425011, // VERIFIED: was 5218518
+  'Credit & Payment Cards': 3561432011, // VERIFIED: was 62
+  'Digital Music': 163856011, // VERIFIED: was 54716226
   'Electronics': 172282, // Verified from API query syntax (was 23161322, 493964)
-  'Everything Else': 1268701,
-  'Gift Cards': 37093,
-  'Grocery & Gourmet Food': 3301351,
-  'Handmade Products': 1209104,
-  'Health & Household': 8773677,
-  'Home & Kitchen': 130316507,
+  'Everything Else': 10272111, // VERIFIED: was 1268701
+  'Gift Cards': 2238192011, // VERIFIED: was 37093
+  'Grocery & Gourmet Food': 16310101, // VERIFIED: was 3301351
+  'Handmade Products': 11260432011, // VERIFIED: was 1209104
+  'Health & Household': 3760901, // VERIFIED: was 8773677
+  'Home & Kitchen': 1055398, // VERIFIED: was 130316507,
   'Industrial & Scientific': 16310091, // Verified from API query syntax
-  'Kindle Store': 5258707,
-  'Luxury Stores': 33210,
-  'Magazine Subscriptions': 4613,
-  'Movies & TV': 7631976,
-  'Musical Instruments': 2735580,
-  'Office Products': 11223237,
-  'Patio, Lawn & Garden': 20234413,
-  'Pet Supplies': 7144114,
-  'Prime Video': 8465,
-  'Software': 129132,
-  'Sports & Outdoors': 27136078,
-  'Tools & Home Improvement': 32132196,
-  'Toys & Games': 7385282,
-  'Video Games': 996441,
-  'Video Shorts': 215456
+  'Kindle Store': 133140011, // VERIFIED: was 5258707
+  'Luxury Stores': 18981045011, // VERIFIED: was 33210
+  'Magazine Subscriptions': 599858, // VERIFIED: was 4613
+  'Movies & TV': 2625373011, // VERIFIED: was 7631976
+  'Musical Instruments': 11091801, // VERIFIED: was 2735580
+  'Office Products': 1064954, // VERIFIED: was 11223237,
+  'Patio, Lawn & Garden': 2972638011, // VERIFIED: was 20234413
+  'Pet Supplies': 2619533011, // VERIFIED: was 7144114
+  'Prime Video': 2858778011, // VERIFIED: was 8465
+  'Software': 229534, // VERIFIED: was 129132
+  'Sports & Outdoors': 3375251, // VERIFIED: was 27136078,
+  'Tools & Home Improvement': 228013, // VERIFIED: was 32132196
+  'Toys & Games': 165793011, // VERIFIED: was 7385282
+  'Video Games': 468642, // VERIFIED: was 996441
+  'Video Shorts': 9013971011 // VERIFIED: was 215456
 } as const;
 
 // Helper function to get category name from ID
