@@ -525,9 +525,10 @@ export class KeepaTools {
       
       result += `• Sort: ${params.sortBy} (${params.sortOrder})\n\n`;
 
-      const mockResults = this.generateMockFinderResults(params, domain);
+      // Make real API call to Keepa
+      const products = await this.client.searchProducts(params);
       
-      if (mockResults.length === 0) {
+      if (products.length === 0) {
         result += `❌ **No products found** matching your criteria.\n\n`;
         result += `**Suggestions:**\n`;
         result += `• Try widening your price range\n`;
@@ -537,50 +538,64 @@ export class KeepaTools {
         return result;
       }
 
-      result += `📊 **Found ${mockResults.length} products** (Page ${params.page + 1}):\n\n`;
+      result += `📊 **Found ${products.length} products** (Page ${params.page + 1}):\n\n`;
 
-      mockResults.forEach((product, i) => {
+      products.forEach((product: any, i: number) => {
         const rank = params.page * params.perPage + i + 1;
-        result += `**${rank}. ${product.asin}** ${product.competition === 'Low' ? '🟢' : product.competition === 'Medium' ? '🟡' : '🔴'}\n`;
-        result += `📦 **${product.title}**\n`;
+        const title = product.title || product.productTitle || 'Unknown Product';
+        const monthlySold = product.monthlySold || product.stats?.monthlySold || 0;
+        const rating = product.stats?.current_RATING ? product.stats.current_RATING / 10 : product.rating;
+        const reviewCount = product.stats?.current_COUNT_REVIEWS || product.reviewCount;
+        const price = product.stats?.current_AMAZON || product.price;
+        const shipping = product.stats?.current_BUY_BOX_SHIPPING || product.shipping;
+        const salesRank = product.stats?.current_SALES || product.salesRank;
+        const sellerCount = product.stats?.avg90_COUNT_NEW || product.sellerCount || 1;
+        
+        // Determine competition level
+        let competition = 'Medium';
+        if (sellerCount <= 3) competition = 'Low';
+        else if (sellerCount >= 10) competition = 'High';
+        
+        result += `**${rank}. ${product.asin}** ${competition === 'Low' ? '🟢' : competition === 'Medium' ? '🟡' : '🔴'}\n`;
+        result += `📦 **${title}**\n`;
         
         if (product.brand) {
           result += `🏷️ Brand: ${product.brand}\n`;
         }
         
-        if (product.price) {
-          result += `💰 **Price**: ${this.client.formatPrice(product.price, domain)}`;
-          if (product.shipping && product.shipping > 0) {
-            result += ` + ${this.client.formatPrice(product.shipping, domain)} shipping`;
+        if (price && price > 0) {
+          result += `💰 **Price**: ${this.client.formatPrice(price, domain)}`;
+          if (shipping && shipping > 0) {
+            result += ` + ${this.client.formatPrice(shipping, domain)} shipping`;
           }
           result += '\n';
         }
         
-        if (product.rating && product.reviewCount) {
-          result += `⭐ **Rating**: ${product.rating}/5.0 (${product.reviewCount.toLocaleString()} reviews)\n`;
+        if (rating && reviewCount) {
+          result += `⭐ **Rating**: ${rating.toFixed(1)}/5.0 (${reviewCount.toLocaleString()} reviews)\n`;
         }
         
-        if (product.monthlySold) {
-          result += `📈 **Monthly Sales**: ~${product.monthlySold.toLocaleString()} units\n`;
+        if (monthlySold && monthlySold > 0) {
+          result += `📈 **Monthly Sales**: ~${monthlySold.toLocaleString()} units\n`;
         }
         
-        if (product.salesRank) {
-          result += `📊 **Sales Rank**: #${product.salesRank.toLocaleString()}\n`;
+        if (salesRank) {
+          result += `📊 **Sales Rank**: #${salesRank.toLocaleString()}\n`;
         }
         
-        if (product.sellerCount) {
-          result += `🏪 **Sellers**: ${product.sellerCount}\n`;
-        }
+        result += `🏪 **Sellers**: ${sellerCount}\n`;
         
         if (product.isPrime) {
           result += `⚡ **Prime Eligible**\n`;
         }
         
-        if (product.profitMargin) {
-          result += `💹 **Est. Profit Margin**: ${product.profitMargin}%\n`;
+        // Calculate estimated profit margin
+        if (price && price > 1000) {
+          const estimatedMargin = Math.max(15, Math.min(40, 30 - (sellerCount * 2)));
+          result += `💹 **Est. Profit Margin**: ${estimatedMargin}%\n`;
         }
         
-        result += `🎯 **Competition**: ${product.competition}\n\n`;
+        result += `🎯 **Competition**: ${competition}\n\n`;
       });
 
       result += `**💡 Pro Tips:**\n`;

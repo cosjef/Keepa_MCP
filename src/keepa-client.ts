@@ -143,6 +143,45 @@ export class KeepaClient {
     return response.data?.bestSellersList || [];
   }
 
+  async searchProducts(params: any): Promise<any[]> {
+    // Convert our parameter names to Keepa API format
+    const keepaParams: any = {
+      domain: params.domain || 1,
+      page: params.page || 0,
+      perPage: params.perPage || 25,
+    };
+
+    // Map our parameters to Keepa's expected format
+    if (params.categoryId) keepaParams.rootCategory = params.categoryId;
+    if (params.minRating) keepaParams.current_RATING_gte = Math.round(params.minRating * 10);
+    if (params.maxRating) keepaParams.current_RATING_lte = Math.round(params.maxRating * 10);
+    if (params.minPrice) keepaParams.current_AMAZON_gte = params.minPrice;
+    if (params.maxPrice) keepaParams.current_AMAZON_lte = params.maxPrice;
+    if (params.minShipping) keepaParams.current_BUY_BOX_SHIPPING_gte = params.minShipping;
+    if (params.maxShipping) keepaParams.current_BUY_BOX_SHIPPING_lte = params.maxShipping;
+    if (params.minMonthlySales) keepaParams.monthlySold_gte = params.minMonthlySales;
+    if (params.maxMonthlySales) keepaParams.monthlySold_lte = params.maxMonthlySales;
+    if (params.minSellerCount) keepaParams.avg90_COUNT_NEW_gte = params.minSellerCount;
+    if (params.maxSellerCount) keepaParams.avg90_COUNT_NEW_lte = params.maxSellerCount;
+    if (params.productType !== undefined) keepaParams.productType = [params.productType.toString()];
+    if (params.isPrime) keepaParams.isPrime = params.isPrime;
+
+    // Sort parameters
+    if (params.sortBy) {
+      const sortMap: { [key: string]: string } = {
+        monthlySold: 'monthlySold',
+        price: 'current',
+        rating: 'current_RATING',
+        reviewCount: 'current_COUNT_REVIEWS',
+        salesRank: 'current_SALES'
+      };
+      keepaParams.sort = [[sortMap[params.sortBy] || 'monthlySold', params.sortOrder || 'desc']];
+    }
+
+    const response = await this.makeRequest<{ products: any[] }>('/search', keepaParams);
+    return response.data?.products || [];
+  }
+
   async getTokensLeft(): Promise<number> {
     const response = await this.makeRequest('/token');
     return response.tokensLeft;
