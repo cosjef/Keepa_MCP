@@ -557,16 +557,6 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 
 ---
 
-## 🎯 **Success Stories**
-
-> *"This MCP server transformed our product research. We went from manually checking ASINs to analyzing entire categories with AI-powered insights. Our inventory turnover improved 40% in the first quarter."*  
-> **— Enterprise Amazon Seller**
-
-> *"The sales velocity analysis helped us avoid $50K+ in slow-moving inventory. The seasonal patterns feature is pure gold for Q4 planning."*  
-> **— 7-Figure Amazon Brand**
-
----
-
 ## 📞 **Support & Resources**
 
 - **🛠️ MCP Server Issues**: [Create Issue on GitHub](https://github.com/your-repo/keepa-mcp-server)
