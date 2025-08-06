@@ -335,7 +335,7 @@ If you see these tools in Claude Desktop, your MCP server is successfully connec
 **⚠️ IMPORTANT**: Only use these verified category IDs for reliable results. Invalid category IDs return empty results.
 
 ### **Major Categories (US Marketplace)**
-- **Electronics**: 23161322
+- **Electronics**: 172282
 - **Home & Kitchen**: 130316507  
 - **Industrial & Scientific**: 16310091
 - **Automotive**: 50495523

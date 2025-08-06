@@ -435,7 +435,7 @@ export const VERIFIED_AMAZON_CATEGORIES = {
   'Collectibles & Fine Art': 5218518,
   'Credit & Payment Cards': 62,
   'Digital Music': 54716226,
-  'Electronics': 23161322, // Previously tested with 493964 - need to verify which is correct
+  'Electronics': 172282, // Verified from API query syntax (was 23161322, 493964)
   'Everything Else': 1268701,
   'Gift Cards': 37093,
   'Grocery & Gourmet Food': 3301351,

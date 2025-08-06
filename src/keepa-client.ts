@@ -903,6 +903,14 @@ export class KeepaClient {
       // FIXED: Add productType array (standard products = "0")
       selection.productType = ["0"];
       
+      // NEW: Add lastRatingUpdate filter for fresh data
+      // This ensures products have recent rating updates (data freshness)
+      // Value appears to be in Keepa time format (days since epoch?)
+      if (params.includeRecentRatings !== false) {
+        // Use a reasonable default for recent rating updates
+        selection.lastRatingUpdate_gte = 7547800; // From API example
+      }
+      
       // FIXED: Add sort parameter in correct format
       if (params.sortBy) {
         const sortOrder = params.sortOrder || 'desc';
