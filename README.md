@@ -30,7 +30,7 @@ A Model Context Protocol (MCP) server that gives Claude access to Keepa's produc
 - **📈 Performance Benchmarking**: Compare against top performers in any category
 - **💡 Strategic Recommendations**: AI-generated market entry and optimization strategies
 
-## 🛠️ **10 Professional MCP Tools**
+## 🛠️ **Available MCP Tools**
 
 > **💬 Natural Language Interface**: Simply ask Claude questions - no JSON or technical syntax required! Claude automatically uses these tools based on your requests.
 
