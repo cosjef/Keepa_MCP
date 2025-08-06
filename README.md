@@ -421,22 +421,22 @@ If you see these tools in Claude Desktop, your MCP server is successfully connec
 
 ---
 
-## 💡 **Why Choose Keepa MCP Server?**
+## 💡 **Key Features**
 
-### **🚀 Professional-Grade Analytics**
-- **FREE Statistics Object Integration**: Ongoing sales velocity and inventory analytics at no extra cost
-- **Industry-Standard Calculations**: Same formulas used by 7-figure Amazon sellers
-- **Real-Time Intelligence**: Access to 3+ billion products with live market data
+### **📊 Analytics & Data**
+- **Statistics Object Integration**: Sales velocity and inventory analytics included with product lookups
+- **Comprehensive Calculations**: Standard industry formulas for sales velocity and inventory turnover
+- **Large Dataset**: Access to 3+ billion Amazon products across multiple marketplaces
 
-### **⚡ Advanced Automation**  
-- **Natural Language Interface**: No technical knowledge required - just ask Claude questions
-- **20+ Advanced Filters**: Find high-opportunity products with surgical precision
-- **Batch Processing**: Analyze up to 100 products simultaneously
+### **⚡ Easy to Use**  
+- **Natural Language Interface**: Ask Claude questions in plain English instead of complex queries
+- **Advanced Filtering**: 20+ filters for product discovery (rating, price, sales volume, competition)
+- **Batch Processing**: Analyze up to 100 products at once
 
-### **📊 Cash Flow Optimization**
-- **Velocity-Based Decisions**: Avoid slow-moving inventory that ties up capital
-- **Stockout Risk Management**: Automated alerts and reorder recommendations
-- **Seasonal Intelligence**: Q4 holiday, back-to-school, and quarterly patterns
+### **📈 Inventory Insights**
+- **Sales Velocity Analysis**: Identify fast and slow-moving products
+- **Risk Management**: Automated stockout risk alerts and reorder quantity suggestions  
+- **Seasonal Patterns**: Quarterly demand analysis for better planning
 
 ---
 
