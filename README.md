@@ -15,7 +15,7 @@ A Model Context Protocol (MCP) server that gives Claude access to Keepa's produc
 - **🎯 Advanced Product Finder**: 20+ filters including rating, price, competition, and sales volume
 - **⭐ Market Opportunity Scoring**: Find high-opportunity, low-competition products
 - **📋 Batch Analysis**: Process up to 100 ASINs simultaneously for portfolio analysis
-- **💡 FREE Analytics Integration**: Statistics Object provides ongoing velocity data at no extra cost
+- **💡 Integrated Analytics**: Statistics Object provides ongoing velocity data included with product lookups
 - **🏆 Competition Intelligence**: Seller count analysis and market saturation scoring
 
 ### 💎 **Deal Discovery & Profit Analysis**
@@ -35,7 +35,7 @@ A Model Context Protocol (MCP) server that gives Claude access to Keepa's produc
 > **💬 Natural Language Interface**: Simply ask Claude questions - no JSON or technical syntax required! Claude automatically uses these tools based on your requests.
 
 ### 🔍 **Core Product Intelligence**
-1. **`keepa_product_lookup`** - Deep product analysis with FREE Statistics Object analytics
+1. **`keepa_product_lookup`** - Deep product analysis with included Statistics Object analytics
 2. **`keepa_batch_product_lookup`** - Portfolio analysis for up to 100 ASINs simultaneously  
 3. **`keepa_price_history`** - Historical pricing trends and market stability analysis
 
@@ -302,124 +302,6 @@ If you see these tools in Claude Desktop, your MCP server is successfully connec
 
 *These examples show the level of professional marketplace intelligence you'll receive from the Keepa MCP server.*
 
-## 🎯 **Advanced Tool Capabilities**
-
-> **💬 Natural Interface**: Ask Claude questions in plain English - no technical syntax needed! Each tool automatically includes **FREE Statistics Object integration** for ongoing sales velocity and inventory analytics.
-
-### 🔍 **Core Product Intelligence**
-
-#### 1. **Advanced Product Lookup** (`keepa_product_lookup`)
-**Includes Statistics Object data for sales velocity and inventory analytics**
-
-**💬 Real-World Examples:**
-- *"Use Keepa to analyze ASIN B08N5WRWNW with sales velocity and inventory turnover data"*
-- *"Get comprehensive market analysis for this product B08C1W5N87 including competitor pricing"*
-- *"Look up B07YTK3YQD with 90-day price trends and stockout risk assessment"*
-
-**✨ Key Features:**
-- **FREE ongoing analytics** via Statistics Object integration
-- Sales velocity calculations (daily/weekly/monthly)
-- Inventory turnover metrics and stockout risk scoring
-- Price history with market stability analysis
-- Competition analysis and opportunity scoring
-
-#### 2. **Portfolio Analysis** (`keepa_batch_product_lookup`)  
-**Process up to 100 ASINs simultaneously with comprehensive analytics**
-
-**💬 Portfolio Management Examples:**
-- *"Analyze my entire product portfolio for velocity and risk using Keepa ASINs: [100 ASINs]"*
-- *"Compare sales performance across my top 25 products using Keepa batch analysis"*
-- *"Get competitive intelligence on these competitor ASINs with market positioning data"*
-
-**✨ Professional Features:**
-- **Batch processing up to 100 ASINs** in a single request
-- **Portfolio health scoring** and risk assessment
-- **Comparative sales velocity analysis** across products
-- **Market position benchmarking** against competitors
-- **Cash flow impact analysis** for inventory decisions
-
-### 🎯 **Advanced Market Discovery**
-
-#### 3. **Enhanced Deal Discovery** (`keepa_search_deals`)
-**Professional profit analysis with lightning deal monitoring**
-
-**💬 Profit-Focused Examples:**
-- *"Find Lightning Deals with 30%+ discounts and high profit potential using Keepa"*
-- *"Show me Prime deals under $100 with 4+ stars that could generate $50+ daily profit"*
-- *"Discover warehouse deals with profit margins above 25% using Keepa"*
-
-**✨ Advanced Features:**
-- **Enhanced profit potential scoring** with ROI calculations
-- **Lightning deal urgency alerts** with time remaining
-- **Deal classification system** (Lightning, Coupon, Promotion, Regular)
-- **Competition level assessment** for deal products
-- **Sales trend analysis** (Improving, Stable, Declining)
-
-#### 4. **Professional Product Finder** (`keepa_product_finder`)
-**20+ advanced filters for opportunity discovery**
-
-**💬 High-Opportunity Searches:**
-- *"Find products in Home & Kitchen with 4+ stars, 1000+ monthly sales, and fewer than 5 competitors"*
-- *"Discover profitable products under $50 with high velocity and low competition using Keepa"*
-- *"Search for Prime-eligible products with accelerating sales trends in Electronics"*
-
-**✨ Key Capabilities:**
-- **20+ professional filters** including rating, price, sales, competition
-- **Market opportunity scoring** for each product found
-- **Competition intelligence** with seller count analysis
-- **Sales volume filtering** for cash flow optimization
-- **Prime eligibility focus** for higher conversion rates
-
-### 📊 **Sales Velocity & Cash Flow Optimization**
-
-#### 5. **Sales Velocity Analysis** (`keepa_sales_velocity`)
-**Industry-standard velocity calculations for inventory optimization**
-
-**💬 Cash Flow Examples:**
-- *"Find fast-moving products in Electronics that turn inventory every 15-20 days using Keepa"*
-- *"Identify products selling 50+ units daily with high revenue velocity using Keepa"*
-- *"Analyze my ASINs for inventory turnover and cash flow optimization using Keepa"*
-
-**✨ Professional Metrics:**
-- **Daily/weekly/monthly sales velocity** with trend analysis
-- **Inventory turnover calculations** (times per year)
-- **Revenue velocity analysis** ($$ per day)
-- **Stockout risk scoring** with reorder recommendations
-- **Cash flow optimization** targeting 20-35 day inventory levels
-
-#### 6. **Portfolio Management** (`keepa_inventory_analysis`)
-**Comprehensive inventory optimization with risk assessment**
-
-**💬 Portfolio Optimization Examples:**
-- *"Analyze my inventory for fast movers vs slow movers and optimize my portfolio using Keepa"*
-- *"Identify stockout risks and generate reorder recommendations for my ASINs using Keepa"*
-- *"Get seasonal patterns analysis for Q4 holiday inventory planning using Keepa"*
-
-**✨ Advanced Analytics:**
-- **Portfolio health scoring** (Excellent/Good/Fair/Poor)
-- **Fast mover identification** (≥30 units/month)
-- **Slow mover alerts** (<10 units/month requiring attention)
-- **Seasonal pattern recognition** with quarterly recommendations
-- **Strategic recommendations** with emoji-coded action items
-
-### 🏢 **Market Intelligence & Competitive Analysis**
-
-#### 7. **Category Analysis** (`keepa_category_analysis`)
-**Comprehensive market intelligence with opportunity scoring**
-
-**💬 Market Intelligence Examples:**
-- *"Analyze the Home & Kitchen market for opportunities, competition levels, and profit potential using Keepa"*
-- *"Get comprehensive market intelligence on Pet Supplies including top brands and pricing trends using Keepa"*
-- *"Identify market gaps in Electronics category with opportunity scoring using Keepa"*
-
-**✨ Intelligence Features:**
-- **Market opportunity scoring** (0-100% algorithmic scoring)
-- **Competition analysis** with market saturation assessment
-- **Price distribution analysis** across budget/mid/premium/luxury segments
-- **Brand concentration metrics** and top performer identification
-- **Strategic market entry recommendations** with actionable insights
-
----
 
 ## 💡 **Key Features**
 
@@ -440,36 +322,6 @@ If you see these tools in Claude Desktop, your MCP server is successfully connec
 
 ---
 
-## 🎯 **Advanced Features Breakdown**
-
-### **🔥 FREE Statistics Object Integration**
-Every product lookup automatically includes:
-- **Sales velocity data** (daily/weekly/monthly units sold)
-- **Inventory turnover metrics** (times per year)
-- **Stockout risk scoring** (Low/Medium/High)
-- **Buy box price tracking** with competition analysis
-- **Market trend identification** (Accelerating/Stable/Declining)
-
-### **📊 20+ Professional Filters**
-The Product Finder includes enterprise-grade filtering:
-- **Sales Volume**: Find products selling 1000+ units monthly
-- **Competition Level**: Target products with <5 sellers
-- **Rating Quality**: Focus on 4+ star products only
-- **Price Ranges**: Budget ($0-25), Mid ($25-75), Premium ($75-200+)
-- **Prime Eligibility**: Higher conversion rates
-- **Review Count**: Products with established market validation
-- **Shipping Costs**: Include shipping in profit calculations
-- **Seasonal Trends**: Identify trending vs declining products
-
-### **🎯 Market Opportunity Scoring**
-Advanced algorithmic scoring (0-100%) considers:
-- **Competition Density**: Fewer sellers = higher opportunity
-- **Quality Gaps**: Below 3.8 stars = improvement opportunity  
-- **Price Sweet Spots**: $20-150 optimal for most categories
-- **Sales Velocity**: Consistent demand indicators
-- **Market Trends**: Growing vs declining categories
-
----
 
 ## 📂 **Verified Amazon Category IDs**
 
@@ -529,18 +381,18 @@ Advanced algorithmic scoring (0-100%) considers:
 
 ---
 
-## 💰 **Cost Optimization**
-
-### **🆓 FREE Analytics Integration** 
-- **Statistics Object**: Provides ongoing sales velocity and inventory analytics at no additional token cost
-- **Smart Batching**: Process up to 100 ASINs in single requests to minimize token usage
-- **Efficient Caching**: Built-in rate limiting and request optimization
+## 💰 **Token Usage & Cost Information**
 
 ### **📊 Token Usage Guidelines**
-- **Product Lookup**: ~1 token (includes FREE Statistics data)
+- **Product Lookup**: ~1 token (includes Statistics Object data at no additional cost)
 - **Market Analysis**: ~5-15 tokens (depending on category size)
 - **Deal Discovery**: ~3-8 tokens (varies by filters)
 - **Velocity Analysis**: ~2-5 tokens (includes portfolio metrics)
+
+### **💡 Cost Optimization Features**
+- **Statistics Object Integration**: Sales velocity and inventory analytics included with product lookups (no additional tokens required)
+- **Smart Batching**: Process up to 100 ASINs in single requests to minimize token usage
+- **Efficient Caching**: Built-in rate limiting and request optimization
 
 ### **⚠️ IMPORTANT: Token Exhaustion Behavior**
 **Critical Limitation**: When your Keepa API tokens are exhausted (≤0), the MCP server will fail and return "No products found" messages instead of meaningful data.
