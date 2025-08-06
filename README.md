@@ -309,7 +309,7 @@ If you see these tools in Claude Desktop, your MCP server is successfully connec
 ### 🔍 **Core Product Intelligence**
 
 #### 1. **Advanced Product Lookup** (`keepa_product_lookup`)
-**Enhanced with FREE Statistics Object analytics for every product**
+**Includes Statistics Object data for sales velocity and inventory analytics**
 
 **💬 Real-World Examples:**
 - *"Use Keepa to analyze ASIN B08N5WRWNW with sales velocity and inventory turnover data"*
