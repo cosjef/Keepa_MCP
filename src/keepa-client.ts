@@ -12,7 +12,9 @@ import {
   SellerQueryParams,
   BestSellerQueryParams,
   KeepaError,
-  KeepaDomain
+  KeepaDomain,
+  VERIFIED_AMAZON_CATEGORIES,
+  getCategoryName
 } from './types.js';
 
 export class KeepaClient {
@@ -63,14 +65,31 @@ export class KeepaClient {
 
   private errorInterceptor(error: any): Promise<never> {
     if (error.response?.data) {
-      const { statusCode, error: errorMessage } = error.response.data;
+      const { statusCode, error: errorMessage, tokensLeft } = error.response.data;
+      
+      // Enhanced token exhaustion detection
+      if (tokensLeft !== undefined && tokensLeft <= 0) {
+        throw new KeepaError(
+          `⚠️ KEEPA TOKEN EXHAUSTION: You have ${tokensLeft} tokens remaining. ` +
+          `Please wait for tokens to refresh or upgrade your Keepa plan. ` +
+          `Check your token status at https://keepa.com/#!api`,
+          statusCode,
+          tokensLeft
+        );
+      }
+      
+      // Low token warning  
+      if (tokensLeft !== undefined && tokensLeft < 5) {
+        console.warn(`🟡 LOW TOKENS WARNING: Only ${tokensLeft} tokens remaining. Consider upgrading your Keepa plan.`);
+      }
+      
       const message = typeof errorMessage === 'string' ? errorMessage : 
                      typeof errorMessage === 'object' ? JSON.stringify(errorMessage) :
                      'API request failed';
       throw new KeepaError(
         message,
         statusCode,
-        error.response.data.tokensLeft
+        tokensLeft
       );
     }
     const message = typeof error === 'string' ? error :
@@ -801,8 +820,19 @@ export class KeepaClient {
     try {
       const selection: any = {};
       
-      // Core filters
+      // Core filters with category validation
       if (params.categoryId) {
+        const categoryName = getCategoryName(params.categoryId);
+        if (!categoryName) {
+          console.warn(`⚠️ CATEGORY WARNING: Category ID ${params.categoryId} not found in verified categories. This may cause empty results.`);
+          const suggestedCategories = Object.entries(VERIFIED_AMAZON_CATEGORIES)
+            .slice(0, 5)
+            .map(([name, id]) => `${name} (${id})`)
+            .join(', ');
+          console.warn(`💡 SUGGESTED CATEGORIES: ${suggestedCategories}`);
+        } else {
+          console.log(`✅ Using verified category: ${categoryName} (${params.categoryId})`);
+        }
         selection.categoryId = params.categoryId;
       }
       

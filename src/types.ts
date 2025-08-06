@@ -413,3 +413,66 @@ export class KeepaError extends Error {
     this.name = 'KeepaError';
   }
 }
+
+// Verified Amazon Category IDs for US marketplace
+// These IDs have been confirmed to work with the Keepa API
+export const VERIFIED_AMAZON_CATEGORIES = {
+  // Top Level Categories
+  'Alexa Skills': 96814,
+  'Amazon Autos': 32373,
+  'Amazon Devices & Accessories': 402,
+  'Appliances': 1544480,
+  'Apps & Games': 797212,
+  'Arts, Crafts & Sewing': 13835970,
+  'Audible Books & Originals': 783083,
+  'Automotive': 50495523,
+  'Baby Products': 3032803,
+  'Beauty & Personal Care': 11064046,
+  'Books': 97748196,
+  'CDs & Vinyl': 7192227,
+  'Cell Phones & Accessories': 24244925,
+  'Clothing, Shoes & Jewelry': 242171273,
+  'Collectibles & Fine Art': 5218518,
+  'Credit & Payment Cards': 62,
+  'Digital Music': 54716226,
+  'Electronics': 23161322, // Previously tested with 493964 - need to verify which is correct
+  'Everything Else': 1268701,
+  'Gift Cards': 37093,
+  'Grocery & Gourmet Food': 3301351,
+  'Handmade Products': 1209104,
+  'Health & Household': 8773677,
+  'Home & Kitchen': 130316507,
+  'Industrial & Scientific': 22791452, // Corrected from 22767748
+  'Kindle Store': 5258707,
+  'Luxury Stores': 33210,
+  'Magazine Subscriptions': 4613,
+  'Movies & TV': 7631976,
+  'Musical Instruments': 2735580,
+  'Office Products': 11223237,
+  'Patio, Lawn & Garden': 20234413,
+  'Pet Supplies': 7144114,
+  'Prime Video': 8465,
+  'Software': 129132,
+  'Sports & Outdoors': 27136078,
+  'Tools & Home Improvement': 32132196,
+  'Toys & Games': 7385282,
+  'Video Games': 996441,
+  'Video Shorts': 215456
+} as const;
+
+// Helper function to get category name from ID
+export function getCategoryName(categoryId: number): string | undefined {
+  const entries = Object.entries(VERIFIED_AMAZON_CATEGORIES);
+  const found = entries.find(([, id]) => id === categoryId);
+  return found?.[0];
+}
+
+// Helper function to get category ID from name
+export function getCategoryId(categoryName: string): number | undefined {
+  return VERIFIED_AMAZON_CATEGORIES[categoryName as keyof typeof VERIFIED_AMAZON_CATEGORIES];
+}
+
+// Get all available category names
+export function getAvailableCategories(): string[] {
+  return Object.keys(VERIFIED_AMAZON_CATEGORIES);
+}

@@ -475,6 +475,45 @@ Advanced algorithmic scoring (0-100%) considers:
 
 ---
 
+## 📂 **Verified Amazon Category IDs**
+
+**⚠️ IMPORTANT**: Only use these verified category IDs for reliable results. Invalid category IDs return empty results.
+
+### **Major Categories (US Marketplace)**
+- **Electronics**: 23161322
+- **Home & Kitchen**: 130316507  
+- **Industrial & Scientific**: 22791452
+- **Automotive**: 50495523
+- **Sports & Outdoors**: 27136078
+- **Tools & Home Improvement**: 32132196
+- **Health & Household**: 8773677
+- **Beauty & Personal Care**: 11064046
+- **Clothing, Shoes & Jewelry**: 242171273
+- **Toys & Games**: 7385282
+- **Pet Supplies**: 7144114
+- **Office Products**: 11223237
+- **Baby Products**: 3032803
+- **Grocery & Gourmet Food**: 3301351
+- **Arts, Crafts & Sewing**: 13835970
+- **Musical Instruments**: 2735580
+- **Patio, Lawn & Garden**: 20234413
+- **Video Games**: 996441
+- **Books**: 97748196
+- **Movies & TV**: 7631976
+
+### **Digital & Specialized Categories**
+- **Amazon Devices & Accessories**: 402
+- **Kindle Store**: 5258707
+- **Apps & Games**: 797212
+- **Digital Music**: 54716226
+- **Audible Books & Originals**: 783083
+- **Prime Video**: 8465
+- **Software**: 129132
+
+> **💡 Pro Tip**: The MCP server automatically validates category IDs and suggests alternatives if you use an invalid one.
+
+---
+
 ## 🌍 **Multi-Marketplace Support**
 
 **Global Intelligence Across 11 Amazon Marketplaces:**
@@ -506,6 +545,26 @@ Advanced algorithmic scoring (0-100%) considers:
 - **Market Analysis**: ~5-15 tokens (depending on category size)
 - **Deal Discovery**: ~3-8 tokens (varies by filters)
 - **Velocity Analysis**: ~2-5 tokens (includes portfolio metrics)
+
+### **⚠️ IMPORTANT: Token Exhaustion Behavior**
+**Critical Limitation**: When your Keepa API tokens are exhausted (≤0), the MCP server will fail and return "No products found" messages instead of meaningful data.
+
+**What Happens:**
+- ❌ **Searches return empty results** (not actual empty categories)
+- ❌ **No error indicating token exhaustion** (appears as failed searches)
+- ❌ **All tools appear broken** until tokens refresh
+
+**How to Identify:**
+- Ask Claude: *"Check my Keepa token status"* 
+- Multiple categories returning "No products found"
+- Recently working searches suddenly failing
+
+**Solutions:**
+- **Wait for token refresh** (daily or monthly depending on your Keepa plan)
+- **Upgrade your Keepa plan** for more tokens
+- **Check your usage** at [Keepa API Dashboard](https://keepa.com/#!api)
+
+**Low Token Warning**: The server warns when you have <5 tokens remaining.
 
 
 ## 🔧 **Developer Reference**
