@@ -2,7 +2,7 @@
 
 A Model Context Protocol (MCP) server that gives Claude access to Keepa's product and sales data through a more approachable, conversational interface. It simplifies Keepa's complex, engineer-oriented design, making it easier to explore product research, sales trends, inventory signals, and competitive analytics without needing to master Keepa's native UI.
 
-## ✨ **Core Intelligence Capabilities**
+## ✨ **Core Capabilities**
 
 ### 📊 **Advanced Sales Velocity & Inventory Optimization** 
 - **🚀 Sales Velocity Analysis**: Identify fast-moving products that generate cash flow (20+ units/day)
