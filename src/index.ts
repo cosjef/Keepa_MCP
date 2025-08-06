@@ -20,6 +20,7 @@ import {
   CategoryAnalysisSchema,
   SalesVelocitySchema,
   InventoryAnalysisSchema,
+  TokenStatusSchema,
 } from './tools.js';
 
 class KeepaServer {
@@ -242,6 +243,15 @@ class KeepaServer {
             required: []
           }
         },
+        {
+          name: 'keepa_token_status',
+          description: 'Check remaining Keepa API tokens and account status',
+          inputSchema: {
+            type: 'object',
+            properties: {},
+            required: []
+          }
+        },
       ];
 
       return { tools };
@@ -315,6 +325,12 @@ class KeepaServer {
           case 'keepa_inventory_analysis':
             result = await this.keepaTools!.analyzeInventory(
               InventoryAnalysisSchema.parse(args)
+            );
+            break;
+
+          case 'keepa_token_status':
+            result = await this.keepaTools!.getTokenStatus(
+              TokenStatusSchema.parse(args)
             );
             break;
 

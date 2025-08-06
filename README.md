@@ -52,6 +52,9 @@ A Model Context Protocol (MCP) server that gives Claude access to Keepa's produc
 ### 🏢 **Competitive Intelligence**
 10. **`keepa_seller_lookup`** - Seller performance analysis and competitive research
 
+### 🪙 **Token Management**
+11. **`keepa_token_status`** - Check remaining API tokens and account status
+
 ## Prerequisites
 
 1. **Keepa API Key**: Sign up at [https://keepa.com/#!api](https://keepa.com/#!api)
@@ -244,6 +247,17 @@ If you see these tools in Claude Desktop, your MCP server is successfully connec
 "Identify trending products in Electronics with accelerating sales velocity using Keepa"
 ```
 
+### 🪙 **Token Management & Monitoring**
+**Check Token Status:**
+```
+"Check my Keepa token status"
+```
+
+**Monitor Usage:**
+```
+"How many Keepa tokens do I have left?"
+```
+
 ---
 
 ## 🎯 **Example Output**
@@ -298,6 +312,19 @@ If you see these tools in Claude Desktop, your MCP server is successfully connec
 
 💰 Profit Potential: HIGH
 🏆 Market Entry Difficulty: LOW-MEDIUM
+```
+
+### **🪙 Token Status Check Output**
+```
+🪙 Keepa API Token Status
+
+💰 Tokens Remaining: 247
+
+✅ Status: EXCELLENT - Plenty of tokens available
+💡 Recommendation: Use advanced analytics freely
+
+📊 Check detailed usage: https://keepa.com/#!api
+⏰ Tokens refresh: According to your Keepa subscription plan
 ```
 
 *These examples show the level of professional marketplace intelligence you'll receive from the Keepa MCP server.*
@@ -385,9 +412,10 @@ The Keepa API operates on a token-based system where each API query consumes tok
 - ❌ **All tools appear broken** until tokens refresh
 
 **How to Identify:**
-- Ask Claude: *"Check my Keepa token status"* 
-- Multiple categories returning "No products found"
+- Use the dedicated token status tool: Ask Claude *"Check my Keepa token status"*
+- Multiple categories returning "No products found" 
 - Recently working searches suddenly failing
+- Low token warnings in search results
 
 **Solutions:**
 - **Wait for token refresh** (daily or monthly depending on your Keepa plan)

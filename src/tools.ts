@@ -109,6 +109,8 @@ export const InventoryAnalysisSchema = z.object({
   targetTurnoverRate: z.number().min(1).max(50).default(12).describe('Target inventory turns per year'),
 });
 
+export const TokenStatusSchema = z.object({});
+
 export class KeepaTools {
   constructor(private client: KeepaClient) {}
 
@@ -1356,5 +1358,46 @@ export class KeepaTools {
     recommendations.push('📈 Focus marketing spend on products with accelerating trends');
     
     return recommendations;
+  }
+
+  async getTokenStatus(params: z.infer<typeof TokenStatusSchema>): Promise<string> {
+    try {
+      const tokensLeft = await this.client.getTokensLeft();
+      
+      let result = `**🪙 Keepa API Token Status**\n\n`;
+      result += `💰 **Tokens Remaining**: ${tokensLeft}\n\n`;
+      
+      if (tokensLeft <= 0) {
+        result += `❌ **Status**: EXHAUSTED - All tools will fail until tokens refresh\n`;
+        result += `⚠️ **Impact**: Searches will return "No products found" instead of real data\n\n`;
+        result += `**🔧 Solutions:**\n`;
+        result += `• Wait for daily/monthly token refresh\n`;
+        result += `• Upgrade your Keepa plan for more tokens\n`;
+        result += `• Check usage at https://keepa.com/#!api\n`;
+      } else if (tokensLeft <= 5) {
+        result += `⚠️ **Status**: LOW - Use carefully to avoid exhaustion\n`;
+        result += `💡 **Recommendation**: Conserve tokens for critical queries\n\n`;
+        result += `**Token Usage Guidelines:**\n`;
+        result += `• Product Lookup: ~1 token\n`;
+        result += `• Category Analysis: ~5-15 tokens\n`;
+        result += `• Deal Discovery: ~3-8 tokens\n`;
+      } else if (tokensLeft <= 25) {
+        result += `🟡 **Status**: MODERATE - Monitor usage\n`;
+        result += `💡 **Recommendation**: Plan your queries efficiently\n`;
+      } else if (tokensLeft <= 100) {
+        result += `🟢 **Status**: GOOD - Adequate for regular usage\n`;
+        result += `💡 **Recommendation**: Normal usage, monitor daily\n`;
+      } else {
+        result += `✅ **Status**: EXCELLENT - Plenty of tokens available\n`;
+        result += `💡 **Recommendation**: Use advanced analytics freely\n`;
+      }
+      
+      result += `\n**📊 Check detailed usage**: https://keepa.com/#!api\n`;
+      result += `**⏰ Tokens refresh**: According to your Keepa subscription plan\n`;
+      
+      return result;
+    } catch (error) {
+      return `Error checking token status: ${error instanceof Error ? error.message : 'Unknown error'}`;
+    }
   }
 }
