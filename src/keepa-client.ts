@@ -80,7 +80,7 @@ export class KeepaClient {
       
       // Low token warning  
       if (tokensLeft !== undefined && tokensLeft < 5) {
-        console.warn(`🟡 LOW TOKENS WARNING: Only ${tokensLeft} tokens remaining. Consider upgrading your Keepa plan.`);
+        // console.warn(`🟡 LOW TOKENS WARNING: Only ${tokensLeft} tokens remaining. Consider upgrading your Keepa plan.`);
       }
       
       const message = typeof errorMessage === 'string' ? errorMessage : 
@@ -824,14 +824,14 @@ export class KeepaClient {
       if (params.categoryId) {
         const categoryName = getCategoryName(params.categoryId);
         if (!categoryName) {
-          console.warn(`⚠️ CATEGORY WARNING: Category ID ${params.categoryId} not found in verified categories. This may cause empty results.`);
+          // console.warn(`⚠️ CATEGORY WARNING: Category ID ${params.categoryId} not found in verified categories. This may cause empty results.`);
           const suggestedCategories = Object.entries(VERIFIED_AMAZON_CATEGORIES)
             .slice(0, 5)
             .map(([name, id]) => `${name} (${id})`)
             .join(', ');
-          console.warn(`💡 SUGGESTED CATEGORIES: ${suggestedCategories}`);
+          // console.warn(`💡 SUGGESTED CATEGORIES: ${suggestedCategories}`);
         } else {
-          console.log(`✅ Using verified category: ${categoryName} (${params.categoryId})`);
+          // console.log(`✅ Using verified category: ${categoryName} (${params.categoryId})`);
         }
         selection.categoryId = params.categoryId;
       }
