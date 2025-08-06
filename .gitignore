@@ -54,3 +54,12 @@ jspm_packages/
 # Temporary folders
 tmp/
 temp/
+
+# Debug and testing files
+debug-*.js
+test-*.js
+fixed-*.js
+validate-*.js
+*_RECONCILIATION.md
+*_VALIDATION.md
+PROGRESS.md
