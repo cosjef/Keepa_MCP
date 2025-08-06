@@ -838,11 +838,10 @@ export class KeepaClient {
       }
       
       // Price filters (in cents)
-      if (params.minPrice) {
-        selection.current_AMAZON = { gte: params.minPrice };
-      }
-      if (params.maxPrice) {
-        selection.current_AMAZON = { ...selection.current_AMAZON, lte: params.maxPrice };
+      if (params.minPrice || params.maxPrice) {
+        selection.current_AMAZON = {};
+        if (params.minPrice) selection.current_AMAZON.gte = params.minPrice;
+        if (params.maxPrice) selection.current_AMAZON.lte = params.maxPrice;
       }
       
       // FIXED: Shipping cost filters using BUY_BOX_SHIPPING
@@ -878,8 +877,13 @@ export class KeepaClient {
       }
       
       // NEW: Review count filter
-      if (params.minReviewCount) {
-        selection.current_COUNT_REVIEWS = { gte: params.minReviewCount };
+      if (params.minReviewCount || params.hasReviews === true) {
+        selection.current_COUNT_REVIEWS = {};
+        if (params.minReviewCount) {
+          selection.current_COUNT_REVIEWS.gte = params.minReviewCount;
+        } else if (params.hasReviews === true) {
+          selection.current_COUNT_REVIEWS.gte = 1;
+        }
       }
       
       // NEW: Prime eligibility filter
@@ -887,17 +891,11 @@ export class KeepaClient {
         selection.isPrime = true;
       }
       
-      // NEW: Product availability filter
-      if (params.hasReviews === true) {
-        selection.current_COUNT_REVIEWS = { gte: 1 };
-      }
-      
       // NEW: Sales rank filters (lower rank = better selling)
-      if (params.maxSalesRank) {
-        selection.current_SALES_RANK = { lte: params.maxSalesRank };
-      }
-      if (params.minSalesRank) {
-        selection.current_SALES_RANK = { ...selection.current_SALES_RANK, gte: params.minSalesRank };
+      if (params.minSalesRank || params.maxSalesRank) {
+        selection.current_SALES_RANK = {};
+        if (params.minSalesRank) selection.current_SALES_RANK.gte = params.minSalesRank;
+        if (params.maxSalesRank) selection.current_SALES_RANK.lte = params.maxSalesRank;
       }
       
       // FIXED: Add productType array (standard products = "0")
@@ -919,6 +917,9 @@ export class KeepaClient {
         // Default sort by monthly sales descending
         selection.sort = [["monthlySold", "desc"]];
       }
+      
+      // Debug log for troubleshooting (uncomment when debugging)
+      // console.log('🔍 Selection object:', JSON.stringify(selection, null, 2));
       
       // Get ASINs from query endpoint
       const queryResponse = await this.makeRequest('/query', {
