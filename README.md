@@ -1,10 +1,6 @@
-# Keepa MCP Server 🚀
+# Amazon Marketplace Intelligence Tool
 
-**Professional Amazon Marketplace Intelligence Platform**
-
-A comprehensive Model Context Protocol (MCP) server that transforms Claude into a powerful Amazon marketplace intelligence assistant. Access over 3 billion Amazon products with industry-grade analytics for product research, sales velocity optimization, inventory management, and competitive analysis.
-
-> **🎯 Built for Success**: From basic ASIN lookups to advanced portfolio management, this MCP server provides the same level of marketplace intelligence used by 7-figure Amazon sellers and enterprise brands.
+A Model Context Protocol (MCP) server that gives Claude access to Keepa's product and sales data through a more approachable, conversational interface. It simplifies Keepa's complex, engineer-oriented design, making it easier to explore product research, sales trends, inventory signals, and competitive analytics without needing to master Keepa's native UI.
 
 ## ✨ **Core Intelligence Capabilities**
 
