@@ -606,7 +606,11 @@ export class KeepaTools {
 
       return result;
     } catch (error) {
-      return `Error in product finder: ${error instanceof Error ? error.message : 'Unknown error'}`;
+      console.error('Product finder error:', error);
+      const errorMessage = error instanceof Error ? error.message : 
+                          typeof error === 'string' ? error : 
+                          JSON.stringify(error);
+      return `Error in product finder: ${errorMessage}`;
     }
   }
 
@@ -640,7 +644,11 @@ export class KeepaTools {
 
       return result;
     } catch (error) {
-      return `Error analyzing category: ${error instanceof Error ? error.message : 'Unknown error'}`;
+      console.error('Category analysis error:', error);
+      const errorMessage = error instanceof Error ? error.message : 
+                          typeof error === 'string' ? error : 
+                          JSON.stringify(error);
+      return `Error analyzing category: ${errorMessage}`;
     }
   }
 
