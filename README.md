@@ -246,7 +246,7 @@ If you see these tools in Claude Desktop, your MCP server is successfully connec
 
 ---
 
-## 🎯 **Real Results from Professional Users**
+## 🎯 **Example Output**
 
 ### **📈 Sales Velocity Analysis Output**
 ```
