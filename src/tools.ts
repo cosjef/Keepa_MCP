@@ -551,7 +551,7 @@ export class KeepaTools {
         const price = product.stats?.current_AMAZON || product.price;
         const shipping = product.stats?.current_BUY_BOX_SHIPPING || product.shipping;
         const salesRank = product.stats?.current_SALES || product.salesRank;
-        const sellerCount = product.stats?.avg90_COUNT_NEW || product.sellerCount || 1;
+        const sellerCount = product.stats?.avg90?.[11] ?? product.sellerCount ?? 1;
         
         // Determine competition level
         let competition = 'Medium';
@@ -761,7 +761,7 @@ export class KeepaTools {
     opportunities.slice(0, 8).forEach((product: any, i: number) => {
       const title = product.title || product.productTitle || `Product ${product.asin}`;
       const rating = product.stats?.current_RATING ? product.stats.current_RATING / 10 : 0;
-      const sellerCount = product.stats?.avg90_COUNT_NEW || 1;
+      const sellerCount = product.stats?.avg90?.[11] ?? 1;
       const monthlySold = product.monthlySold || 0;
       
       result += `**${i + 1}. ${title.substring(0, 40)}${title.length > 40 ? '...' : ''}** 🟢\n`;
@@ -1012,8 +1012,8 @@ export class KeepaTools {
 
       // Calculate risk factors
       const seasonality = monthlySold > 1000 && salesRank < 10000 ? 'Low' : monthlySold < 100 ? 'High' : 'Medium';
-      const competition = product.stats?.avg90_COUNT_NEW > 10 ? 'High' : product.stats?.avg90_COUNT_NEW < 5 ? 'Low' : 'Medium';
-      const sellerCount = product.stats?.avg90_COUNT_NEW || 1;
+      const competition = product.stats?.avg90?.[11] > 10 ? 'High' : product.stats?.avg90?.[11] < 5 ? 'Low' : 'Medium';
+      const sellerCount = product.stats?.avg90?.[11] ?? 1;
 
       // Calculate profitability metrics
       const grossMarginPercent = Math.max(15, Math.min(40, 35 - sellerCount * 2));

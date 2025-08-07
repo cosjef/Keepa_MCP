@@ -936,7 +936,8 @@ export class KeepaClient {
           params.domain || 1, 
           {
             rating: true,
-            offers: 20
+            offers: 20,
+            stats: 1  // CRITICAL: Include statistics data for seller counts
           }
         );
         
@@ -963,7 +964,8 @@ export class KeepaClient {
             const asinList = bestSellers.slice(0, params.perPage || 25).map(bs => bs.asin);
             const detailedProducts = await this.getProductsBatch(asinList, params.domain || 1, {
               rating: true,
-              offers: 20
+              offers: 20,
+              stats: 1  // CRITICAL: Include statistics data for seller counts
             });
             
             return detailedProducts.map((product, index) => {
