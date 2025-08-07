@@ -64,6 +64,7 @@ export const ProductFinderSchema = z.object({
   maxMonthlySales: z.number().min(0).optional().describe('Maximum estimated monthly sales'),
   minSellerCount: z.number().min(0).optional().describe('Minimum number of sellers'),
   maxSellerCount: z.number().min(0).optional().describe('Maximum number of sellers'),
+  sellerCountTimeframe: z.enum(['current', '30day', '90day', '180day', '365day']).default('90day').describe('Timeframe for seller count (current, 30day, 90day, 180day, 365day)'),
   isPrime: z.boolean().optional().describe('Filter for Prime eligible products only'),
   hasReviews: z.boolean().optional().describe('Filter for products with reviews only'),
   productType: z.number().min(0).max(2).default(0).optional().describe('Product type (0=standard, 1=variation parent, 2=variation child)'),
@@ -81,6 +82,7 @@ export const CategoryAnalysisSchema = z.object({
   minRating: z.number().min(1).max(5).default(3.0).describe('Minimum rating for products to include'),
   includeSubcategories: z.boolean().default(false).describe('Include analysis of subcategories'),
   timeframe: z.enum(['week', 'month', 'quarter', 'year']).default('month').describe('Timeframe for trend analysis'),
+  sellerCountTimeframe: z.enum(['current', '30day', '90day', '180day', '365day']).default('90day').describe('Timeframe for seller count analysis (current, 30day, 90day, 180day, 365day)'),
 });
 
 export const SalesVelocitySchema = z.object({
@@ -96,6 +98,7 @@ export const SalesVelocitySchema = z.object({
   minRating: z.number().min(1).max(5).default(3.0).describe('Minimum product rating'),
   sortBy: z.enum(['velocity', 'turnoverRate', 'revenueVelocity', 'trend']).default('velocity').describe('Sort results by metric'),
   sortOrder: z.enum(['asc', 'desc']).default('desc').describe('Sort order'),
+  sellerCountTimeframe: z.enum(['current', '30day', '90day', '180day', '365day']).default('90day').describe('Timeframe for seller count analysis (current, 30day, 90day, 180day, 365day)'),
   page: z.number().min(0).default(0).describe('Page number for pagination'),
   perPage: z.number().min(1).max(50).default(25).describe('Results per page (max 50)'),
 });
@@ -106,6 +109,7 @@ export const InventoryAnalysisSchema = z.object({
   asins: z.array(z.string()).max(100).optional().describe('Specific ASINs to analyze (your inventory)'),
   analysisType: z.enum(['overview', 'fast_movers', 'slow_movers', 'stockout_risks', 'seasonal']).default('overview').describe('Type of inventory analysis'),
   timeframe: z.enum(['week', 'month', 'quarter']).default('month').describe('Analysis timeframe'),
+  sellerCountTimeframe: z.enum(['current', '30day', '90day', '180day', '365day']).default('90day').describe('Timeframe for seller count analysis (current, 30day, 90day, 180day, 365day)'),
   targetTurnoverRate: z.number().min(1).max(50).default(12).describe('Target inventory turns per year'),
 });
 
@@ -516,7 +520,12 @@ export class KeepaTools {
       if (params.minSellerCount || params.maxSellerCount) {
         const min = params.minSellerCount || 'Any';
         const max = params.maxSellerCount || 'Any';
-        result += `• Seller Count: ${min} - ${max}\n`;
+        const timeframeDesc = params.sellerCountTimeframe === '90day' ? '90-day average' : 
+                             params.sellerCountTimeframe === 'current' ? 'current' :
+                             params.sellerCountTimeframe === '30day' ? '30-day average' :
+                             params.sellerCountTimeframe === '180day' ? '180-day average' :
+                             '365-day average';
+        result += `• Seller Count: ${min} - ${max} (${timeframeDesc})\n`;
       }
       if (params.isPrime !== undefined) {
         result += `• Prime Only: ${params.isPrime ? 'Yes' : 'No'}\n`;
@@ -551,7 +560,8 @@ export class KeepaTools {
         const price = product.stats?.current_AMAZON || product.price;
         const shipping = product.stats?.current_BUY_BOX_SHIPPING || product.shipping;
         const salesRank = product.stats?.current_SALES || product.salesRank;
-        const sellerCount = product.stats?.avg90?.[11] ?? product.sellerCount ?? 1;
+        const sellerInfo = this.client.getSellerCount(product, params.sellerCountTimeframe);
+        const sellerCount = sellerInfo.count;
         
         // Determine competition level
         let competition = 'Medium';
@@ -585,7 +595,7 @@ export class KeepaTools {
           result += `📊 **Sales Rank**: #${salesRank.toLocaleString()}\n`;
         }
         
-        result += `🏪 **Sellers**: ${sellerCount}\n`;
+        result += `🏪 **Sellers**: ${sellerCount} (${sellerInfo.description})\n`;
         
         if (product.isPrime) {
           result += `⚡ **Prime Eligible**\n`;
@@ -761,11 +771,12 @@ export class KeepaTools {
     opportunities.slice(0, 8).forEach((product: any, i: number) => {
       const title = product.title || product.productTitle || `Product ${product.asin}`;
       const rating = product.stats?.current_RATING ? product.stats.current_RATING / 10 : 0;
-      const sellerCount = product.stats?.avg90?.[11] ?? 1;
+      const sellerInfo = this.client.getSellerCount(product, params.sellerCountTimeframe);
+      const sellerCount = sellerInfo.count;
       const monthlySold = product.monthlySold || 0;
       
       result += `**${i + 1}. ${title.substring(0, 40)}${title.length > 40 ? '...' : ''}** 🟢\n`;
-      result += `📦 ${product.asin} | ⭐ ${rating.toFixed(1)} | 👥 ${sellerCount} sellers | 📈 ${monthlySold} monthly\n\n`;
+      result += `📦 ${product.asin} | ⭐ ${rating.toFixed(1)} | 👥 ${sellerCount} sellers (${sellerInfo.description}) | 📈 ${monthlySold} monthly\n\n`;
     });
 
     result += `**💡 Opportunity Insights:**\n`;
@@ -1012,8 +1023,9 @@ export class KeepaTools {
 
       // Calculate risk factors
       const seasonality = monthlySold > 1000 && salesRank < 10000 ? 'Low' : monthlySold < 100 ? 'High' : 'Medium';
-      const competition = product.stats?.avg90?.[11] > 10 ? 'High' : product.stats?.avg90?.[11] < 5 ? 'Low' : 'Medium';
-      const sellerCount = product.stats?.avg90?.[11] ?? 1;
+      const sellerInfo = this.client.getSellerCount(product, params.sellerCountTimeframe);
+      const sellerCount = sellerInfo.count;
+      const competition = sellerCount > 10 ? 'High' : sellerCount < 5 ? 'Low' : 'Medium';
 
       // Calculate profitability metrics
       const grossMarginPercent = Math.max(15, Math.min(40, 35 - sellerCount * 2));
@@ -1150,6 +1162,7 @@ export class KeepaTools {
       categoryId: params.categoryId,
       asins: params.asins,
       timeframe: params.timeframe,
+      sellerCountTimeframe: params.sellerCountTimeframe || '90day',
       perPage: 50,
       page: 0,
       sortBy: 'velocity' as const,

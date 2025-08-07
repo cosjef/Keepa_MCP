@@ -1148,4 +1148,53 @@ export class KeepaClient {
 
     return domains[domain] || 'amazon.com';
   }
+
+  /**
+   * Get seller count for a product based on specified timeframe
+   * @param product - Keepa product object with stats
+   * @param timeframe - Timeframe to use for seller count
+   * @returns Seller count and timeframe description
+   */
+  getSellerCount(product: any, timeframe: string = '90day'): { count: number; description: string } {
+    if (!product?.stats) {
+      return { count: 1, description: '90-day average (no stats available)' };
+    }
+
+    const { stats } = product;
+    const COUNT_NEW_INDEX = 11; // DataType.COUNT_NEW
+
+    switch (timeframe) {
+      case 'current':
+        return {
+          count: stats.current?.[COUNT_NEW_INDEX] ?? 1,
+          description: 'current'
+        };
+      case '30day':
+        return {
+          count: stats.avg30?.[COUNT_NEW_INDEX] ?? 1,
+          description: '30-day average'
+        };
+      case '90day':
+        return {
+          count: stats.avg90?.[COUNT_NEW_INDEX] ?? 1,
+          description: '90-day average'
+        };
+      case '180day':
+        return {
+          count: stats.avg180?.[COUNT_NEW_INDEX] ?? 1,
+          description: '180-day average'
+        };
+      case '365day':
+        return {
+          count: stats.avg365?.[COUNT_NEW_INDEX] ?? 1,
+          description: '365-day average'
+        };
+      default:
+        // Default to 90-day if invalid timeframe
+        return {
+          count: stats.avg90?.[COUNT_NEW_INDEX] ?? 1,
+          description: '90-day average (default)'
+        };
+    }
+  }
 }
