@@ -67,17 +67,22 @@ A Model Context Protocol (MCP) server that gives Claude access to Keepa's produc
 ## Installation
 
 1. Clone or download this repository
-2. Install dependencies:
+2. Navigate to the project directory:
+   ```bash
+   cd keepa_mcp
+   ```
+
+3. Install dependencies:
    ```bash
    npm install
    ```
 
-3. Build the TypeScript code:
+4. Build the TypeScript code:
    ```bash
    npm run build
    ```
 
-4. You'll configure your Keepa API key in the Claude Desktop config (next section)
+5. You'll configure your Keepa API key in the Claude Desktop config (next section)
 
 ## Configuration
 
