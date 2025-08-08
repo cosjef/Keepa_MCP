@@ -126,7 +126,7 @@ Add to your Claude Desktop `claude_desktop_config.json`:
 
 ### **Grant MCP Server Permissions**
 
-When you first start Claude Desktop with the MCP server configured, you'll see a permission dialog. Click **"Allow"** to grant the server access:
+When you first start Claude Desktop with the MCP server configured, you'll see a permission dialog. Click **"Allow"** to grant the server access as needed:
 
 ![Claude Desktop Permissions](screenshots/claude_permissions.jpg)
 
