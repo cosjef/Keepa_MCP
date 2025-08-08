@@ -268,6 +268,51 @@ If you see these tools in Claude Desktop, your MCP server is successfully connec
 
 ## 🎯 **Example Output**
 
+### **🔍 Product Finder Search Results**
+```
+Perfect! I found exactly what you're looking for. Here are the top 5 Industrial & Scientific products that meet all your criteria (4.4-5.0 star rating, 4-5 sellers, 2000+ monthly sales), sorted by highest monthly sales:
+
+Top 5 High-Volume Products:
+
+1. 🏆 MedPride Nitrile Exam Gloves (Large) - B00GS8VGP6
+• Monthly Sales: ~30,000 units 🔥
+• Rating: 4.4-5.0 stars
+• Sellers: 4 (medium competition)
+• Product: Powder-free nitrile exam gloves, 100-pack
+
+2. 🧴 Zep Industrial Sprayer Bottle - B08JSKYBKQ
+• Monthly Sales: ~10,000 units
+• Rating: 4.4-5.0 stars
+• Sellers: 5 (medium competition)
+• Product: 48oz sprayer with 30ft range, adjustable nozzle
+
+3. 💍 BYASKZIV Ultrasonic Jewelry Cleaner - BOD7L961CR
+• Monthly Sales: ~10,000 units
+• Rating: 4.4-5.0 stars
+• Sellers: 4 (medium competition)
+• Product: 48KHz cleaner with dual modes, stainless steel tank
+
+4. MedPride Nitrile Gloves (X-Large) - B00GS8VIKE
+• Monthly Sales: ~10,000 units
+• Rating: 4.4-5.0 stars
+• Sellers: 4 (medium competition)
+• Product: Powder-free nitrile exam gloves, 100-pack
+
+5. MedPride Nitrile Gloves (Small) - B00GS8W2HC
+• Monthly Sales: ~10,000 units
+• Rating: 4.4-5.0 stars
+• Sellers: 4 (medium competition)
+• Product: Powder-free nitrile exam gloves, 100-pack
+
+Key Insights:
+• MedPride gloves dominate with the highest sales volume (30K monthly for Large size)
+• Medical/safety products show strong consistent demand
+• Medium competition level across all top products (4-5 sellers)
+• Consumable products tend to have higher sales volumes
+
+Would you like me to get more detailed information about any of these specific products, including price history or current pricing data?
+```
+
 ### **📈 Sales Velocity Analysis Output**
 ```
 ✅ Electronics Portfolio Analysis Complete!
